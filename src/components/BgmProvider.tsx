@@ -3,10 +3,13 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useRef,
   useState,
   ReactNode,
 } from "react";
+
+import { usePathname } from "next/navigation";
 
 type BgmContextType = {
   isPlaying: boolean;
@@ -17,6 +20,9 @@ type BgmContextType = {
 const BgmContext = createContext<BgmContextType | null>(null);
 
 export function BgmProvider({ children }: { children: ReactNode }) {
+  // 현재 페이지 주소
+  const pathname = usePathname();
+
   // 실제 <audio> 태그
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -31,6 +37,12 @@ export function BgmProvider({ children }: { children: ReactNode }) {
 
   // 이퀄라이저가 사용할 분석기
   const [analyser, setAnalyser] = useState<AnalyserNode | null>(null);
+
+  // 페이지에 따라 사용할 BGM 결정
+  const bgmSrc =
+    pathname === "/game"
+      ? "/audio/game-intro-bgm.wav"
+      : "/audio/main-bgm.wav";
 
   const setupAudioAnalyser = () => {
     const audio = audioRef.current;
@@ -93,6 +105,23 @@ export function BgmProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  // 페이지가 변경되어 BGM 파일이 바뀌었을 때 처리
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    if (!audio) return;
+
+    // 새로운 음악을 처음부터 시작
+    audio.currentTime = 0;
+
+    // 기존에 BGM이 켜져 있었다면 새 음악도 재생
+    if (isPlaying) {
+      audio.play().catch((error) => {
+        console.error("BGM 전환 실패:", error);
+      });
+    }
+  }, [bgmSrc]);
+
   return (
     <BgmContext.Provider
       value={{
@@ -103,7 +132,7 @@ export function BgmProvider({ children }: { children: ReactNode }) {
     >
       <audio
         ref={audioRef}
-        src="/audio/main-bgm.wav"
+        src={bgmSrc}
         loop
       />
 

@@ -2,7 +2,8 @@
   position: relative;
 
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 600px;
 
   display: flex;
   justify-content: center;
@@ -30,15 +31,22 @@
         rgba(3, 3, 15, 0.3) 65%,
         rgba(0, 0, 0, 0.55) 100%
       );
+
+    pointer-events: none;
   }
 }
 
+
+/* =========================
+   중앙 메인 UI
+========================= */
+
 .hero {
   position: relative;
+
   z-index: 2;
 
-  width: 100%;
-  max-width: 760px;
+  width: min(90%, 760px);
 
   display: flex;
   flex-direction: column;
@@ -46,22 +54,43 @@
 
   text-align: center;
 
-   // 전체 UI를 위로 이동
-  transform: translateY(-90px);
+  transform: translateY(
+    clamp(-90px, -8vh, -45px)
+  );
 }
+
+
+/* =========================
+   좌우 이퀄라이저
+========================= */
 
 .leftVisualizer,
 .rightVisualizer {
   position: absolute;
+
   z-index: 1;
 
-  bottom: 30%;
+  /*
+    화면 너비에 따라 이퀄라이저도 같이 커지고 작아짐.
 
-  width: 145vw;
-  max-width: none;
+    1366px → 약 1640px
+    1920px → 약 2300px
+    2560px → 약 3070px
+    3840px → 약 4600px
+  */
+  width: clamp(1000px, 120vw, 4600px);
+
+  /*
+    화면 높이에 따라 위치도 자연스럽게 변경.
+    특정 해상도에서 갑자기 튀는 media query를 사용하지 않음.
+  */
+  bottom: clamp(70px, 18vh, 390px);
 
   pointer-events: none;
 }
+
+
+/* 이퀄라이저 본체 */
 
 .visualizerOriginal {
   position: relative;
@@ -72,10 +101,12 @@
   z-index: 2;
 }
 
+
+/* 이퀄라이저 반사 */
+
 .visualizerReflection {
   position: absolute;
 
-  // 원본 바로 아래
   top: 200%;
   left: 0;
 
@@ -92,36 +123,50 @@
   pointer-events: none;
 }
 
+
+/* 왼쪽 이퀄라이저 */
+
 .leftVisualizer {
   left: 0;
 
   transform:
-    perspective(1200px)
+    perspective(
+      clamp(900px, 65vw, 2500px)
+    )
     rotateY(40deg);
 
   transform-origin: left bottom;
 }
 
+
+/* 오른쪽 이퀄라이저 */
+
 .rightVisualizer {
   right: 0;
 
   transform:
-    perspective(1200px)
+    perspective(
+      clamp(900px, 65vw, 2500px)
+    )
     rotateY(-40deg);
 
   transform-origin: right bottom;
 }
 
 
+/* =========================
+   별도 반사 효과
+========================= */
 
 .leftReflection,
 .rightReflection {
   position: absolute;
+
   z-index: 0;
 
   bottom: -6%;
 
-  width: 48vw;
+  width: clamp(500px, 48vw, 1800px);
 
   opacity: 0.22;
 
@@ -131,11 +176,12 @@
 
   transform: scaleY(-1);
 
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.7),
-    transparent
-  );
+  mask-image:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7),
+      transparent
+    );
 }
 
 .leftReflection {
@@ -146,18 +192,25 @@
   right: -4%;
 }
 
+
+/* =========================
+   SONG QUIZ 타이틀
+========================= */
+
 .title {
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  // SONG ↔ QUIZ 사이 간격
-  gap: 40px;
+  gap: clamp(22px, 3.7vh, 40px);
 
   margin: 10px;
 
-  font-size: 150px;
-  letter-spacing: 6px;
+  font-size: clamp(90px, 7.8vw, 150px);
+
+  letter-spacing:
+    clamp(3px, 0.3vw, 6px);
+
   line-height: 0.8;
 
   span {
@@ -173,43 +226,76 @@
       0 0 34px rgba(76, 82, 255, 0.55);
   }
 
-span:last-child {
-  color: transparent;
-  -webkit-text-stroke: 4px #d84cff;
+  span:last-child {
+    color: transparent;
 
-  transform: scaleX(1.12);
-  letter-spacing: 8px;
+    -webkit-text-stroke:
+      clamp(2px, 0.2vw, 4px)
+      #d84cff;
 
-  filter:
-    drop-shadow(0 0 3px rgba(216, 76, 255, 0.8))
-    drop-shadow(0 0 7px rgba(174, 60, 255, 0.45));
+    transform: scaleX(1.12);
+
+    letter-spacing:
+      clamp(4px, 0.4vw, 8px);
+
+    filter:
+      drop-shadow(
+        0 0 3px
+        rgba(216, 76, 255, 0.8)
+      )
+      drop-shadow(
+        0 0 7px
+        rgba(174, 60, 255, 0.45)
+      );
+  }
 }
-}
 
+
+/* =========================
+   설명 문구
+========================= */
 
 .description {
-  margin-top: 50px;
+  margin-top:
+    clamp(28px, 4.6vh, 50px);
 
-  color: rgba(255, 255, 255, 0.88);
+  color:
+    rgba(255, 255, 255, 0.88);
 
-  font-size: 30px;
+  font-size:
+    clamp(18px, 1.55vw, 30px);
+
   font-weight: 500;
 
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
+  text-shadow:
+    0 2px 8px
+    rgba(0, 0, 0, 0.75);
 }
+
+
+/* =========================
+   버튼 영역
+========================= */
 
 .actions {
   width: 100%;
   max-width: 650px;
 
-  margin-top: 40px;
+  margin-top:
+    clamp(24px, 3.7vh, 40px);
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  gap: 28px;
+  gap:
+    clamp(16px, 2.6vh, 28px);
 }
+
+
+/* =========================
+   GAME START
+========================= */
 
 .startButton {
   position: relative;
@@ -219,18 +305,32 @@ span:last-child {
   justify-content: center;
 
   width: 100%;
-  height: 112px;
-  padding: 0 46px;
+
+  height:
+    clamp(76px, 10.4vh, 112px);
+
+  padding:
+    0
+    clamp(30px, 2.4vw, 46px);
 
   color: #ffffff;
-  background: rgba(10, 6, 25, 0.65);
 
-  border: 2px solid #e14bff;
-  border-radius: 16px;
+  background:
+    rgba(10, 6, 25, 0.65);
 
-  font-size: 31px;
+  border:
+    2px solid #e14bff;
+
+  border-radius:
+    clamp(11px, 0.85vw, 16px);
+
+  font-size:
+    clamp(20px, 1.6vw, 31px);
+
   font-weight: 800;
   letter-spacing: 1px;
+
+  text-decoration: none;
 
   cursor: pointer;
 
@@ -244,51 +344,71 @@ span:last-child {
     box-shadow 0.2s ease;
 
   &:hover {
-    transform: translateY(-3px);
+    transform:
+      translateY(-3px);
 
-    background: rgba(85, 16, 112, 0.4);
+    background:
+      rgba(85, 16, 112, 0.4);
 
     box-shadow:
       0 0 18px rgba(225, 75, 255, 0.7),
       0 0 40px rgba(137, 43, 226, 0.28);
+
+    .startArrow {
+      transform:
+        translateX(5px)
+        rotate(45deg);
+    }
   }
 
   &:active {
-    transform: translateY(0);
+    transform:
+      translateY(0);
   }
 }
+
+
+/* GAME START 화살표 */
 
 .startArrow {
   position: absolute;
-  right: 40px;
 
-  width: 18px;
-  height: 18px;
+  right:
+    clamp(24px, 2.1vw, 40px);
 
-  border-top: 3px solid #ffffff;
-  border-right: 3px solid #ffffff;
+  width:
+    clamp(13px, 0.95vw, 18px);
 
-  transform: rotate(45deg);
+  height:
+    clamp(13px, 0.95vw, 18px);
+
+  border-top:
+    3px solid #ffffff;
+
+  border-right:
+    3px solid #ffffff;
+
+  transform:
+    rotate(45deg);
 
   filter:
-    drop-shadow(0 0 3px rgba(255, 255, 255, 0.8))
-    drop-shadow(0 0 7px rgba(225, 75, 255, 0.5));
+    drop-shadow(
+      0 0 3px
+      rgba(255, 255, 255, 0.8)
+    )
+    drop-shadow(
+      0 0 7px
+      rgba(225, 75, 255, 0.5)
+    );
 
-  transition: transform 0.2s ease;
+  transition:
+    transform 0.2s ease;
 }
 
-.startButton:hover {
-  .startArrow {
-    transform: translateX(5px) rotate(45deg);
-  }
-}
 
-.startButton:hover {
-  .startArrow {
-    transform: translateX(5px) rotate(45deg);
-  }
-}
-
+/* =========================
+   RANKING
+========================= */
 
 .rankingButton {
   display: flex;
@@ -296,17 +416,31 @@ span:last-child {
   justify-content: space-between;
 
   width: 80%;
-  height: 112px;
-  padding: 0 34px;
+
+  height:
+    clamp(70px, 10.4vh, 112px);
+
+  padding:
+    0
+    clamp(22px, 1.8vw, 34px);
 
   color: #ffffff;
-  background: rgba(10, 6, 25, 0.65);
 
-  border: 2px solid #488cff;
-  border-radius: 13px;
+  background:
+    rgba(10, 6, 25, 0.65);
 
-  font-size: 31px;
+  border:
+    2px solid #488cff;
+
+  border-radius:
+    clamp(10px, 0.7vw, 13px);
+
+  font-size:
+    clamp(18px, 1.6vw, 31px);
+
   font-weight: 800;
+
+  font-family: inherit;
 
   cursor: pointer;
 
@@ -320,66 +454,170 @@ span:last-child {
     box-shadow 0.2s ease;
 
   &:hover {
-    transform: translateY(-3px);
-    background: rgba(35, 74, 145, 0.3);
+    transform:
+      translateY(-3px);
+
+    background:
+      rgba(35, 74, 145, 0.3);
 
     box-shadow:
       0 0 16px rgba(72, 140, 255, 0.65),
       0 0 30px rgba(45, 90, 255, 0.22);
 
     .rankingArrow {
-      transform: translateX(5px) rotate(45deg);
+      transform:
+        translateX(5px)
+        rotate(45deg);
     }
   }
 
   &:active {
-    transform: translateY(0);
+    transform:
+      translateY(0);
   }
 }
 
-.rankingIcon {
-  width: 24px;
 
-  font-size: 25px;
+/* 랭킹 아이콘 */
+
+.rankingIcon {
+  width:
+    clamp(18px, 1.25vw, 24px);
+
+  font-size:
+    clamp(19px, 1.3vw, 25px);
+
   line-height: 1;
 
   color: #ffffff;
 
   filter:
-    drop-shadow(0 0 4px rgba(255, 255, 255, 0.7))
-    drop-shadow(0 0 8px rgba(72, 140, 255, 0.5));
+    drop-shadow(
+      0 0 4px
+      rgba(255, 255, 255, 0.7)
+    )
+    drop-shadow(
+      0 0 8px
+      rgba(72, 140, 255, 0.5)
+    );
 }
+
+
+/* 랭킹 화살표 */
 
 .rankingArrow {
-  width: 16px;
-  height: 16px;
+  width:
+    clamp(12px, 0.85vw, 16px);
 
-  border-top: 3px solid #ffffff;
-  border-right: 3px solid #ffffff;
+  height:
+    clamp(12px, 0.85vw, 16px);
 
-  transform: rotate(45deg);
+  border-top:
+    3px solid #ffffff;
+
+  border-right:
+    3px solid #ffffff;
+
+  transform:
+    rotate(45deg);
 
   filter:
-    drop-shadow(0 0 3px rgba(255, 255, 255, 0.8))
-    drop-shadow(0 0 7px rgba(72, 140, 255, 0.5));
+    drop-shadow(
+      0 0 3px
+      rgba(255, 255, 255, 0.8)
+    )
+    drop-shadow(
+      0 0 7px
+      rgba(72, 140, 255, 0.5)
+    );
 
-  transition: transform 0.2s ease;
+  transition:
+    transform 0.2s ease;
 }
 
-@media (max-width: 1200px) {
-  .leftVisualizer,
-  .rightVisualizer {
-    bottom: 5%;
-  }
-}
 
-@media (max-width: 900px) {
+/* =========================
+   낮은 PC 화면
+   1366 × 768 등
+========================= */
+
+@media (max-height: 800px) {
   .hero {
-    max-width: 90%;
+    transform:
+      translateY(-35px);
   }
 
   .title {
-    font-size: clamp(64px, 11vw, 90px);
+    gap: 20px;
+
+    font-size:
+      clamp(72px, 7vw, 105px);
+  }
+
+  .description {
+    margin-top: 25px;
+
+    font-size:
+      clamp(17px, 1.4vw, 22px);
+  }
+
+  .actions {
+    margin-top: 24px;
+
+    gap: 16px;
+
+    max-width: 540px;
+  }
+
+  .startButton {
+    height: 72px;
+
+    font-size: 21px;
+  }
+
+  .rankingButton {
+    height: 64px;
+
+    font-size: 19px;
+  }
+
+  /*
+    크기는 그대로 width의 vw 계산을 사용하고
+    낮은 화면에서는 세로 위치만 약간 조절.
+  */
+  .leftVisualizer,
+  .rightVisualizer {
+    bottom:
+      clamp(50px, 10vh, 90px);
+  }
+}
+
+
+/* =========================
+   태블릿 크기
+========================= */
+
+@media (max-width: 900px) {
+  .hero {
+    width: 90%;
+    max-width: 600px;
+
+    transform:
+      translateY(-30px);
+  }
+
+  .title {
+    gap: 22px;
+
+    font-size:
+      clamp(64px, 11vw, 90px);
+  }
+
+  .description {
+    margin-top: 30px;
+
+    font-size:
+      clamp(17px, 3vw, 22px);
   }
 
   .actions {
@@ -387,16 +625,17 @@ span:last-child {
   }
 
   .startButton {
-    height: 96px;
+    height: 76px;
 
     padding: 0 32px;
 
-    font-size: 25px;
+    font-size: 22px;
   }
 
   .rankingButton {
     width: 72%;
-    height: 70px;
+
+    height: 64px;
 
     font-size: 18px;
   }
@@ -407,9 +646,112 @@ span:last-child {
   }
 }
 
+
+/* =========================
+   작은 화면
+========================= */
+
 @media (max-width: 700px) {
   .leftVisualizer,
-  .rightVisualizer {
+  .rightVisualizer,
+  .leftReflection,
+  .rightReflection {
     display: none;
+  }
+
+  .hero {
+    width: 88%;
+
+    transform:
+      translateY(-20px);
+  }
+
+  .title {
+    font-size:
+      clamp(58px, 16vw, 80px);
+  }
+
+  .description {
+    font-size: 17px;
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+  .startButton {
+    height: 70px;
+
+    font-size: 19px;
+  }
+
+  .rankingButton {
+    width: 82%;
+
+    height: 60px;
+
+    font-size: 17px;
+  }
+}
+
+
+/* =========================
+   QHD / 4K 큰 화면
+========================= */
+
+@media (min-width: 2200px) {
+  .hero {
+    width: min(90%, 1000px);
+
+    transform:
+      translateY(-110px);
+  }
+
+  .title {
+    gap: clamp(40px, 3.5vh, 60px);
+
+    font-size:
+      clamp(150px, 7vw, 220px);
+
+    letter-spacing: 8px;
+  }
+
+  .title span:last-child {
+    letter-spacing: 10px;
+
+    -webkit-text-stroke:
+      5px #d84cff;
+  }
+
+  .description {
+    margin-top:
+      clamp(50px, 4vh, 70px);
+
+    font-size:
+      clamp(30px, 1.4vw, 42px);
+  }
+
+  .actions {
+    max-width: 850px;
+
+    margin-top: 50px;
+
+    gap: 32px;
+  }
+
+  .startButton {
+    height:
+      clamp(112px, 8vh, 145px);
+
+    font-size:
+      clamp(31px, 1.4vw, 42px);
+  }
+
+  .rankingButton {
+    height:
+      clamp(100px, 7vh, 135px);
+
+    font-size:
+      clamp(28px, 1.3vw, 38px);
   }
 }

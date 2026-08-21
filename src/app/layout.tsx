@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Header from "@/components/Header";
 import { BgmProvider } from "@/components/BgmProvider";
 import "@/styles/globals.scss";
 
@@ -17,9 +16,7 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <BgmProvider>
-          <Header />
-
-          <main>{children}</main>
+          {children}
         </BgmProvider>
       </body>
     </html>
