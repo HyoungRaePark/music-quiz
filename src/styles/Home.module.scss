@@ -1,0 +1,415 @@
+.home {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+
+  background: {
+    image: url("/images/main-background.png");
+    size: cover;
+    position: center;
+    repeat: no-repeat;
+  }
+
+  &::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+      radial-gradient(
+        circle at center,
+        rgba(33, 10, 70, 0.08) 0%,
+        rgba(3, 3, 15, 0.3) 65%,
+        rgba(0, 0, 0, 0.55) 100%
+      );
+  }
+}
+
+.hero {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 760px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+   // 전체 UI를 위로 이동
+  transform: translateY(-90px);
+}
+
+.leftVisualizer,
+.rightVisualizer {
+  position: absolute;
+  z-index: 1;
+
+  bottom: 30%;
+
+  width: 145vw;
+  max-width: none;
+
+  pointer-events: none;
+}
+
+.visualizerOriginal {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 2;
+}
+
+.visualizerReflection {
+  position: absolute;
+
+  // 원본 바로 아래
+  top: 200%;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 1;
+
+  opacity: 0.4;
+
+  transform: scaleY(-1);
+  transform-origin: top center;
+
+  pointer-events: none;
+}
+
+.leftVisualizer {
+  left: 0;
+
+  transform:
+    perspective(1200px)
+    rotateY(40deg);
+
+  transform-origin: left bottom;
+}
+
+.rightVisualizer {
+  right: 0;
+
+  transform:
+    perspective(1200px)
+    rotateY(-40deg);
+
+  transform-origin: right bottom;
+}
+
+
+
+.leftReflection,
+.rightReflection {
+  position: absolute;
+  z-index: 0;
+
+  bottom: -6%;
+
+  width: 48vw;
+
+  opacity: 0.22;
+
+  pointer-events: none;
+
+  filter: blur(2px);
+
+  transform: scaleY(-1);
+
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7),
+    transparent
+  );
+}
+
+.leftReflection {
+  left: -4%;
+}
+
+.rightReflection {
+  right: -4%;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // SONG ↔ QUIZ 사이 간격
+  gap: 40px;
+
+  margin: 10px;
+
+  font-size: 150px;
+  letter-spacing: 6px;
+  line-height: 0.8;
+
+  span {
+    display: block;
+  }
+
+  span:first-child {
+    color: #ffffff;
+
+    text-shadow:
+      0 0 8px rgba(255, 255, 255, 0.9),
+      0 0 18px rgba(89, 126, 255, 0.75),
+      0 0 34px rgba(76, 82, 255, 0.55);
+  }
+
+span:last-child {
+  color: transparent;
+  -webkit-text-stroke: 4px #d84cff;
+
+  transform: scaleX(1.12);
+  letter-spacing: 8px;
+
+  filter:
+    drop-shadow(0 0 3px rgba(216, 76, 255, 0.8))
+    drop-shadow(0 0 7px rgba(174, 60, 255, 0.45));
+}
+}
+
+
+.description {
+  margin-top: 50px;
+
+  color: rgba(255, 255, 255, 0.88);
+
+  font-size: 30px;
+  font-weight: 500;
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
+}
+
+.actions {
+  width: 100%;
+  max-width: 650px;
+
+  margin-top: 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 28px;
+}
+
+.startButton {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 112px;
+  padding: 0 46px;
+
+  color: #ffffff;
+  background: rgba(10, 6, 25, 0.65);
+
+  border: 2px solid #e14bff;
+  border-radius: 16px;
+
+  font-size: 31px;
+  font-weight: 800;
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 0 12px rgba(225, 75, 255, 0.35),
+    inset 0 0 22px rgba(225, 75, 255, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+
+    background: rgba(85, 16, 112, 0.4);
+
+    box-shadow:
+      0 0 18px rgba(225, 75, 255, 0.7),
+      0 0 40px rgba(137, 43, 226, 0.28);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.startArrow {
+  position: absolute;
+  right: 40px;
+
+  width: 18px;
+  height: 18px;
+
+  border-top: 3px solid #ffffff;
+  border-right: 3px solid #ffffff;
+
+  transform: rotate(45deg);
+
+  filter:
+    drop-shadow(0 0 3px rgba(255, 255, 255, 0.8))
+    drop-shadow(0 0 7px rgba(225, 75, 255, 0.5));
+
+  transition: transform 0.2s ease;
+}
+
+.startButton:hover {
+  .startArrow {
+    transform: translateX(5px) rotate(45deg);
+  }
+}
+
+.startButton:hover {
+  .startArrow {
+    transform: translateX(5px) rotate(45deg);
+  }
+}
+
+
+.rankingButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 80%;
+  height: 112px;
+  padding: 0 34px;
+
+  color: #ffffff;
+  background: rgba(10, 6, 25, 0.65);
+
+  border: 2px solid #488cff;
+  border-radius: 13px;
+
+  font-size: 31px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 0 10px rgba(72, 140, 255, 0.3),
+    inset 0 0 18px rgba(72, 140, 255, 0.06);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    background: rgba(35, 74, 145, 0.3);
+
+    box-shadow:
+      0 0 16px rgba(72, 140, 255, 0.65),
+      0 0 30px rgba(45, 90, 255, 0.22);
+
+    .rankingArrow {
+      transform: translateX(5px) rotate(45deg);
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.rankingIcon {
+  width: 24px;
+
+  font-size: 25px;
+  line-height: 1;
+
+  color: #ffffff;
+
+  filter:
+    drop-shadow(0 0 4px rgba(255, 255, 255, 0.7))
+    drop-shadow(0 0 8px rgba(72, 140, 255, 0.5));
+}
+
+.rankingArrow {
+  width: 16px;
+  height: 16px;
+
+  border-top: 3px solid #ffffff;
+  border-right: 3px solid #ffffff;
+
+  transform: rotate(45deg);
+
+  filter:
+    drop-shadow(0 0 3px rgba(255, 255, 255, 0.8))
+    drop-shadow(0 0 7px rgba(72, 140, 255, 0.5));
+
+  transition: transform 0.2s ease;
+}
+
+@media (max-width: 1200px) {
+  .leftVisualizer,
+  .rightVisualizer {
+    bottom: 5%;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    max-width: 90%;
+  }
+
+  .title {
+    font-size: clamp(64px, 11vw, 90px);
+  }
+
+  .actions {
+    max-width: 520px;
+  }
+
+  .startButton {
+    height: 96px;
+
+    padding: 0 32px;
+
+    font-size: 25px;
+  }
+
+  .rankingButton {
+    width: 72%;
+    height: 70px;
+
+    font-size: 18px;
+  }
+
+  .leftVisualizer,
+  .rightVisualizer {
+    opacity: 0.65;
+  }
+}
+
+@media (max-width: 700px) {
+  .leftVisualizer,
+  .rightVisualizer {
+    display: none;
+  }
+}
