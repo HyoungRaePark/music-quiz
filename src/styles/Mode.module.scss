@@ -1,0 +1,913 @@
+.modePage {
+  min-height: 100vh;
+
+  background:
+    linear-gradient(rgba(4, 6, 24, 0.45), rgba(4, 6, 24, 0.75)),
+    url("/images/game-background.png") center / cover no-repeat;
+
+  color: white;
+  overflow: hidden;
+}
+
+/* =========================
+   제목 영역
+========================= */
+
+.titleSection {
+  padding-top: 95px;
+  text-align: center;
+}
+
+// 모드를
+.titleSection h1 {
+  margin: 14px 0 10px;
+
+  font-size: 48px;
+  font-weight: 800;
+
+  animation:
+    titleEnter 0.7s ease-out both,
+    titleGlow 2.8s ease-in-out 0.7s infinite;
+
+  span {
+    display: inline-block;
+
+    background: linear-gradient(
+      90deg,
+      #ff55e8,
+      #a766ff,
+      #4ebdff,
+      #ff55e8
+    );
+
+    background-size: 300% 300%;
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+    animation: modeGradient 4s ease-in-out infinite;
+
+    text-shadow:
+      0 0 12px rgba(186, 88, 255, 0.35),
+      0 0 20px rgba(73, 184, 255, 0.2);
+  }
+}
+
+.eyebrow {
+  margin: 0;
+
+  font-size: 18px;
+  letter-spacing: 8px;
+
+  color: #6ea8ff;
+}
+
+.titleSection h1 {
+  margin: 14px 0 10px;
+  font-size: 48px;
+}
+
+.subtitle {
+  margin: 0;
+
+  font-size: 22px;
+
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* =========================
+   카드 전체 영역
+========================= */
+
+.modeList {
+  position: relative;
+  z-index: 2;
+  width: min(88%, 1720px);
+  margin: 45px auto 0;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 36px;
+}
+
+.cardWrapper {
+  position: relative;
+  width: 100%;
+
+  transition: transform 0.25s ease;
+}
+
+.cardWrapper:hover {
+  transform: translateY(-8px);
+}
+
+.cardWrapper:hover .kpopCard button {
+  box-shadow:
+    0 0 12px rgba(255, 70, 255, 0.9),
+    0 0 28px rgba(255, 70, 255, 0.65),
+    inset 0 0 20px rgba(255, 70, 255, 0.25);
+}
+
+.cardWrapper:hover .jpopCard button {
+  box-shadow:
+    0 0 12px rgba(38, 190, 255, 0.9),
+    0 0 28px rgba(38, 170, 255, 0.65),
+    inset 0 0 20px rgba(38, 170, 255, 0.25);
+}
+
+.cardWrapper:hover .popCard button {
+  box-shadow:
+    0 0 12px rgba(255, 160, 55, 0.9),
+    0 0 28px rgba(255, 140, 45, 0.65),
+    inset 0 0 20px rgba(255, 140, 45, 0.25);
+}
+
+/* =========================
+   공통 카드
+========================= */
+
+.modeCard {
+  position: relative;
+  overflow: hidden;
+
+  min-height: 500px;
+  padding: 34px 26px 26px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 28px;
+
+  background: rgba(10, 8, 40, 0.72);
+
+  text-align: center;
+
+  transition:
+  box-shadow 0.25s ease,
+  border-color 0.25s ease,
+  filter 0.25s ease;
+
+h2 {
+    position: relative;
+    z-index: 1;
+
+    margin: 0 0 8px;
+
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  p {
+    position: relative;
+    z-index: 1;
+
+    margin: 0 0 20px;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  button {
+    position: relative;
+    z-index: 1;
+
+    width: 88%;
+    height: 64px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 999px;
+
+    background: rgba(10, 8, 35, 0.65);
+
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+      background 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+}
+
+.playArrow {
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1;
+
+  transform: translateY(-2px);
+}
+
+.cardWrapper:hover .modeCard {
+  filter: brightness(1.06);
+
+  box-shadow:
+    0 0 10px currentColor,
+    0 0 28px color-mix(in srgb, currentColor 45%, transparent),
+    inset 0 0 24px color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.kpopCard {
+  color: #ff63ff;
+}
+
+.jpopCard {
+  color: #40bfff;
+}
+
+.popCard {
+  color: #ffad42;
+}
+
+/* =========================
+   카드 배경
+========================= */
+
+.cardBackground {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  opacity: 0.72;
+}
+
+.cardBackground::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(4, 4, 20, 0.02) 0%,
+    rgba(5, 5, 25, 0.18) 45%,
+    rgba(5, 5, 20, 0.72) 100%
+  );
+}
+
+
+.kpopBackground {
+  background-image: url("/images/mode-kpop.png");
+}
+
+.jpopBackground {
+  background-image: url("/images/mode-jpop.png");
+}
+
+.popBackground {
+  background-image: url("/images/mode-pop.png");
+}
+
+.hardBackground {
+  background-image: url("/images/mode-hard.png");
+}
+
+/* =========================
+   LP
+========================= */
+
+.record {
+  position: relative;
+  z-index: 1;
+
+  width: 220px;
+  aspect-ratio: 1;
+
+  margin-bottom: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      #6f55ff 0 8%,
+      #17132c 9% 25%,
+      #29233d 26% 28%,
+      #0a0915 29% 45%,
+      #262038 46% 48%,
+      #090812 49% 100%
+    );
+
+  box-shadow:
+    0 0 18px rgba(110, 90, 255, 0.45),
+    inset 0 0 25px rgba(255, 255, 255, 0.08);
+
+  span {
+    position: relative;
+    z-index: 2;
+
+    width: 64px;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid currentColor;
+    border-radius: 50%;
+
+    background: rgba(8, 7, 25, 0.85);
+
+    font-size: 30px;
+  }
+   &::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+      circle,
+      currentColor 0%,
+      transparent 65%
+    );
+
+    opacity: 0;
+
+    filter: blur(14px);
+
+    transition:
+      opacity 0.45s ease,
+      transform 0.45s ease;
+
+    transform: scale(0.65);
+
+    pointer-events: none;
+  }
+}
+
+.cardWrapper:hover .record::after {
+  opacity: 0.22;
+  transform: scale(1.05);
+}
+
+.cardWrapper:hover .record {
+  filter: brightness(1.2);
+
+  box-shadow:
+    0 0 12px currentColor,
+    0 0 28px color-mix(in srgb, currentColor 55%, transparent),
+    inset 0 0 22px color-mix(in srgb, currentColor 30%, transparent);
+}
+
+.kpopRecord {
+  color: #ff63ff;
+
+  span {
+    box-shadow: 0 0 15px rgba(255, 99, 255, 0.7);
+  }
+}
+
+.jpopRecord {
+  color: #40bfff;
+
+  span {
+    box-shadow: 0 0 15px rgba(64, 191, 255, 0.7);
+  }
+}
+
+.popRecord {
+  color: #ffad42;
+
+  span {
+    box-shadow: 0 0 15px rgba(255, 173, 66, 0.7);
+  }
+}
+
+.hardRecord {
+  color: #8d82bd;
+
+  filter: brightness(0.7);
+
+  box-shadow:
+    0 0 12px rgba(110, 90, 170, 0.2),
+    inset 0 0 25px rgba(30, 25, 60, 0.5);
+
+  span {
+    box-shadow: 0 0 12px rgba(129, 120, 184, 0.35);
+  }
+}
+
+/* =========================
+   장르별 카드 네온
+========================= */
+
+.kpopCard {
+  border-color: rgba(255, 92, 255, 0.75);
+
+  box-shadow:
+    0 0 18px rgba(255, 70, 255, 0.18),
+    inset 0 0 25px rgba(255, 70, 255, 0.05);
+
+  button {
+    border-color: #ff63ff;
+
+    box-shadow:
+      0 0 12px rgba(255, 70, 255, 0.45),
+      inset 0 0 15px rgba(255, 70, 255, 0.12);
+  }
+}
+
+.jpopCard {
+  border-color: rgba(67, 174, 255, 0.9);
+
+  box-shadow:
+    0 0 22px rgba(38, 145, 255, 0.28),
+    inset 0 0 25px rgba(38, 145, 255, 0.06);
+
+  button {
+    border-color: #38bfff;
+
+    box-shadow:
+      0 0 14px rgba(38, 170, 255, 0.55),
+      inset 0 0 15px rgba(38, 170, 255, 0.15);
+  }
+}
+
+.popCard {
+  border-color: rgba(255, 174, 71, 0.85);
+
+  box-shadow:
+    0 0 18px rgba(255, 137, 45, 0.2),
+    inset 0 0 25px rgba(255, 137, 45, 0.05);
+
+  button {
+    border-color: #ffa640;
+
+    box-shadow:
+      0 0 12px rgba(255, 142, 45, 0.5),
+      inset 0 0 15px rgba(255, 142, 45, 0.12);
+  }
+}
+
+// 하드카드
+
+.hardCard {
+  border-color: rgba(120, 105, 180, 0.45);
+
+  background: rgba(8, 7, 25, 0.82);
+
+  box-shadow:
+    0 0 18px rgba(100, 80, 180, 0.12),
+    inset 0 0 30px rgba(20, 15, 50, 0.35);
+
+  button {
+    border-color: rgba(135, 120, 190, 0.4);
+
+    background: rgba(30, 25, 55, 0.65);
+
+    color: rgba(220, 215, 240, 0.65);
+
+    box-shadow: none;
+
+    cursor: not-allowed;
+  }
+}
+
+.hardCard .cardBackground {
+  opacity: 0.28;
+  filter: grayscale(0.35);
+}
+/* =========================
+   하드카드 해금 조건
+========================= */
+
+.unlockInfo {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  padding: 10px 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  border: 1px solid rgba(130, 105, 220, 0.4);
+  border-radius: 14px;
+
+  background: rgba(15, 12, 40, 0.72);
+
+  color: rgba(220, 215, 240, 0.72);
+
+  transition:
+    border-color 0.6s ease,
+    background 0.6s ease,
+    color 0.6s ease,
+    box-shadow 0.6s ease;
+
+  p {
+    margin: 0;
+  }
+}
+
+.lockedWrapper:hover .unlockInfo {
+  border-color: rgba(255, 70, 90, 0.95);
+  background: rgba(90, 10, 25, 0.9);
+  color: #ffd6dc;
+
+  box-shadow:
+    0 0 12px rgba(255, 60, 80, 0.7),
+    0 0 28px rgba(255, 40, 70, 0.45),
+    inset 0 0 18px rgba(255, 60, 80, 0.18);
+}
+
+.lockedWrapper:hover .unlockInfo {
+  border-color: rgba(255, 70, 90, 0.95);
+
+  background: rgba(80, 10, 25, 0.8);
+
+  color: #ffd6dc;
+
+  box-shadow:
+    0 0 12px rgba(255, 60, 80, 0.55),
+    0 0 26px rgba(255, 40, 70, 0.35),
+    inset 0 0 16px rgba(255, 60, 80, 0.14);
+}
+
+/* =========================
+   곡 수 / 난이도
+========================= */
+
+.modeInfo {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  margin: 0 0 18px;
+  padding: 8px 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+
+  background: rgba(5, 5, 20, 0.35);
+
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+}
+
+.divider {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* =========================
+   추천 / 잠금 배지
+========================= */
+
+.recommendBadge,
+.lockBadge {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+
+  white-space: nowrap;
+
+  border-radius: 999px;
+
+  font-weight: 700;
+}
+
+.recommendBadge {
+  padding: 8px 22px;
+
+  border: 1px solid #b65cff;
+
+  background: rgba(65, 18, 120, 0.95);
+
+  color: white;
+  font-size: 14px;
+
+  box-shadow:
+    0 0 10px rgba(182, 92, 255, 0.7),
+    0 0 22px rgba(90, 110, 255, 0.4);
+}
+
+.lockBadge {
+  padding: 7px 20px;
+
+  border: 1px solid rgba(150, 120, 255, 0.6);
+
+  background: rgba(22, 17, 55, 0.95);
+
+  color: rgba(225, 220, 255, 0.9);
+  font-size: 13px;
+
+  box-shadow: 0 0 12px rgba(110, 80, 255, 0.3);
+}
+
+/* =========================
+   추천 카드 효과 추가
+========================= */
+
+.recommended {
+  transform: translateY(-12px) scale(1.03);
+
+  .modeCard {
+    border-width: 2px;
+
+    filter: brightness(1.12);
+
+    box-shadow:
+      0 0 24px rgba(70, 180, 255, 0.65),
+      0 0 48px rgba(90, 100, 255, 0.4),
+      inset 0 0 28px rgba(70, 160, 255, 0.1);
+  }
+
+  .cardBackground {
+    opacity: 0.9;
+  }
+}
+
+.recommended:hover {
+  transform: translateY(-18px) scale(1.04);
+}
+
+/* =========================
+   하단 영역
+========================= */
+
+.bottomArea {
+  position: relative;
+
+  width: min(88%, 1720px);
+  margin: 30px auto 0;
+
+  display: flex;
+  align-items: center;
+
+  min-height: 55px;
+}
+
+.backButton {
+  padding: 13px 24px;
+
+  border: 1px solid rgba(140, 90, 255, 0.7);
+  border-radius: 999px;
+
+  background: rgba(15, 10, 40, 0.7);
+
+  color: white;
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+  text-decoration: none;
+}
+
+.backButton:hover {
+  border-color: #a86cff;
+
+  background: rgba(50, 25, 90, 0.75);
+
+  box-shadow:
+    0 0 10px rgba(160, 90, 255, 0.45),
+    0 0 20px rgba(110, 70, 255, 0.2);
+}
+
+.challengeMessage {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 13px 28px;
+
+  border: 1px solid rgba(90, 120, 255, 0.45);
+  border-radius: 999px;
+
+  background: rgba(10, 12, 40, 0.75);
+
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+
+  box-shadow:
+    0 0 14px rgba(70, 100, 255, 0.12);
+}
+
+/* =========================
+   추천 마스코트
+========================= */
+
+.recommendGuide {
+  position: absolute;
+  top: 125px;
+  right: 11%;
+
+  z-index: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.guideBubble {
+  position: relative;
+
+  transform: translateY(-35px);
+
+  padding: 16px 22px;
+
+  border: 2px solid rgba(155, 90, 255, 0.9);
+  border-radius: 22px;
+
+  background: rgba(20, 12, 55, 0.92);
+
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+
+  white-space: nowrap;
+
+  box-shadow:
+    0 0 14px rgba(150, 70, 255, 0.45),
+    inset 0 0 15px rgba(100, 60, 255, 0.1);
+}
+
+.guideBubble::after {
+  content: "";
+
+  position: absolute;
+
+  left: -10px;
+  bottom: 18px;
+
+  width: 18px;
+  height: 18px;
+
+  background: rgba(20, 12, 55, 0.92);
+
+  border-left: 2px solid rgba(155, 90, 255, 0.9);
+  border-bottom: 2px solid rgba(155, 90, 255, 0.9);
+
+  transform: rotate(45deg);
+}
+
+.guideCat {
+  width: 230px;
+  opacity: 0.72;
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+
+    filter:
+      drop-shadow(0 0 10px rgba(52, 187, 255, 0.5))
+      drop-shadow(0 0 18px rgba(192, 65, 255, 0.35));
+  }
+}
+
+
+@keyframes recordPulse {
+  0% {
+    opacity: 0.15;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 0.35;
+    transform: scale(1.08);
+  }
+
+  100% {
+    opacity: 0.15;
+    transform: scale(0.8);
+  }
+}
+
+.cardWrapper:hover .record::after {
+  animation: recordPulse 1.8s ease-in-out infinite;
+}
+
+//배경음표장식
+.musicNote {
+  position: absolute;
+  z-index: 1;
+
+  font-weight: 700;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+.note1 {
+  top: 250px;
+  left: 12%;
+
+  font-size: 42px;
+  color: #ff4fff;
+
+  transform: rotate(10deg);
+
+  text-shadow:
+    0 0 8px #ff4fff,
+    0 0 18px rgba(255, 79, 255, 0.7);
+}
+
+.note2 {
+  top: 310px;
+  left: 3%;
+
+  font-size: 36px;
+  color: #36cfff;
+
+  transform: rotate(15deg);
+
+  text-shadow:
+    0 0 8px #36cfff,
+    0 0 18px rgba(54, 207, 255, 0.7);
+}
+
+.note3 {
+  top: 280px;
+  right: 4%;
+
+  font-size: 40px;
+  color: #ff54e8;
+
+  transform: rotate(-12deg);
+
+  text-shadow:
+    0 0 8px #ff54e8,
+    0 0 18px rgba(255, 84, 232, 0.7);
+}
+
+//  플레이할 <span>모드를</span> 선택하세요!
+@keyframes titleEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+    filter: blur(4px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes titleGlow {
+  0%,
+  100% {
+    text-shadow:
+      0 0 6px rgba(255, 255, 255, 0.25),
+      0 0 14px rgba(115, 130, 255, 0.2);
+  }
+
+  50% {
+    text-shadow:
+      0 0 10px rgba(255, 255, 255, 0.45),
+      0 0 22px rgba(120, 100, 255, 0.35);
+  }
+}
+
+@keyframes modeGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}

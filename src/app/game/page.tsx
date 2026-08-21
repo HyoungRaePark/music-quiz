@@ -130,10 +130,16 @@ export default function GamePage() {
               <strong>{selectedGenre}</strong>이 어울리는구나! ♪
             </p>
 
-            <button className={styles.modeButton}>
+            <Link
+              href={
+                selectedGenre
+                  ? `/game/mode?genre=${encodeURIComponent(selectedGenre)}`
+                  : "/game/mode"
+              }
+              className={styles.modeButton}
+            >
               모드 선택으로 가기
-              <span>〉</span>
-            </button>
+            </Link>
           </div>
         )}
       </div>
