@@ -18,115 +18,6 @@
 
 
 /* ==================================================
-   상단 Header
-================================================== */
-
-.loginHeader {
-  height: 90px;
-
-  display: flex;
-  align-items: center;
-
-  padding: 0 48px;
-
-  box-sizing: border-box;
-
-  border-bottom: 1px solid rgba(217, 70, 239, 0.45);
-}
-
-
-/* 로고 */
-.logoArea {
-  border: 0;
-
-  background: transparent;
-
-  color: #ffffff;
-
-  cursor: pointer;
-
-  text-align: left;
-}
-
-
-.logoTitle {
-  display: flex;
-  align-items: center;
-
-  gap: 8px;
-
-  font-size: 26px;
-  font-weight: 800;
-
-  color: #c084fc;
-}
-
-
-.logoSubtitle {
-  display: block;
-
-  margin-top: 6px;
-  margin-left: 38px;
-
-  color: #8d8d9e;
-
-  font-size: 11px;
-
-  letter-spacing: 2px;
-}
-
-
-/* ==================================================
-   상단 메뉴
-================================================== */
-
-.nav {
-  display: flex;
-
-  gap: 55px;
-
-  margin-left: 90px;
-
-  button {
-    border: 0;
-
-    background: transparent;
-
-    color: #ffffff;
-
-    font-size: 17px;
-    font-weight: 700;
-
-    cursor: pointer;
-  }
-}
-
-
-/* ==================================================
-   홈으로 버튼
-================================================== */
-
-.homeButton {
-  margin-left: auto;
-
-  min-width: 130px;
-  height: 48px;
-
-  border: 1px solid #c026d3;
-
-  border-radius: 12px;
-
-  background: transparent;
-
-  color: #ffffff;
-
-  font-size: 16px;
-
-  cursor: pointer;
-}
-
-
-/* ==================================================
    로그인 메인 영역
 ================================================== */
 
@@ -135,7 +26,8 @@
   flex-direction: column;
   align-items: center;
 
-  padding: 70px 20px 50px;
+  // 공통 Header와 로그인 영역 사이 간격
+  padding: 115px 20px 50px;
 }
 
 
@@ -361,12 +253,95 @@
    로그인 하단 안내
 ================================================== */
 
+/* ==================================================
+   로그인 하단 안내 문구
+================================================== */
+
 .loginGuide {
   margin-top: 24px;
 
   color: #9d9dac;
+}
 
-  strong {
-    color: #d946ef;
+
+/* SONG은 로고처럼 흰색 */
+.song {
+  color: #ffffff;
+
+  font-weight: 800;
+
+  text-shadow:
+    0 0 2px #ffffff,
+    0 0 5px rgba(96, 165, 250, 0.95),
+    0 0 9px rgba(59, 130, 246, 0.8),
+    0 0 14px rgba(37, 99, 235, 0.55);
+}
+
+/* QUIZ는 보라 → 분홍 그라데이션 */
+.quiz {
+  font-weight: 800;
+
+  background: linear-gradient(
+    90deg,
+    #a855f7,
+    #ec4899
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent;
+
+  // 로고의 네온 느낌
+  filter: drop-shadow(
+    0 0 5px rgba(217, 70, 239, 0.45)
+  );
+}
+
+/* ==================================================
+   비밀번호 입력창 + 보기/숨기기 버튼
+================================================== */
+
+.passwordInputArea {
+  position: relative;
+
+  width: 100%;
+
+  input {
+    width: 100%;
+
+    // 오른쪽 눈 버튼 공간 확보
+    padding-right: 55px;
+  }
+}
+
+
+/* ==================================================
+   비밀번호 보기 / 숨기기 버튼
+================================================== */
+
+.passwordToggle {
+  position: absolute;
+
+  top: 50%;
+  right: 14px;
+
+  transform: translateY(-50%);
+
+  width: 34px;
+  height: 34px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #9d9dac;
+
+  font-size: 19px;
+
+  cursor: pointer;
+
+  &:hover {
+    color: #ffffff;
   }
 }
