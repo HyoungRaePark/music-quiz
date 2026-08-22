@@ -1,0 +1,339 @@
+/* ==================================================
+   회원가입 페이지 전체
+================================================== */
+
+.signupPage {
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(90, 20, 160, 0.18),
+      transparent 45%
+    ),
+    #05050f;
+
+  color: #ffffff;
+}
+
+
+/* ==================================================
+   회원가입 메인 영역
+================================================== */
+
+.signupContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 105px 20px 50px;
+}
+
+
+/* ==================================================
+   SIGN UP 제목
+================================================== */
+
+.signupTitle {
+  margin-bottom: 34px;
+  text-align: center;
+
+  h1 {
+    margin: 0;
+
+    // 지금보다 살짝 얇게
+    font-size: 52px;
+    font-weight: 550;
+    letter-spacing: 2px;
+
+    // 왼쪽 핑크 → 중앙 보라 → 오른쪽 파랑
+    background: linear-gradient(
+      90deg,
+      #ff4fd8 0%,
+      #d85cff 35%,
+      #9a6bff 65%,
+      #5f7cff 100%
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+    // 네온은 색이 섞여 뭉개지지 않게 약하게
+    filter:
+      drop-shadow(0 0 3px rgba(255, 79, 216, 0.45))
+      drop-shadow(0 0 6px rgba(154, 107, 255, 0.35))
+      drop-shadow(0 0 10px rgba(95, 124, 255, 0.28));
+  }
+
+  p {
+    margin: 10px 0 0;
+
+    color: #aaaabb;
+    font-size: 16px;
+  }
+}
+
+/* ==================================================
+   회원가입 카드
+================================================== */
+
+.signupCard {
+  width: 100%;
+  max-width: 540px;
+
+  box-sizing: border-box;
+
+  padding: 36px;
+
+  border: 1px solid rgba(217, 70, 239, 0.55);
+
+  border-radius: 16px;
+
+  background: rgba(10, 10, 24, 0.88);
+
+  box-shadow:
+    0 0 30px rgba(168, 85, 247, 0.08);
+}
+
+
+/* ==================================================
+   입력 항목
+================================================== */
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-bottom: 22px;
+
+  label {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  input {
+    width: 100%;
+    height: 54px;
+
+    box-sizing: border-box;
+
+    padding: 0 16px;
+
+    border: 1px solid rgba(168, 85, 247, 0.45);
+
+    border-radius: 9px;
+
+    background: #0c0c19;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    outline: none;
+  }
+
+  input:focus {
+    border-color: #d946ef;
+  }
+}
+
+
+/* ==================================================
+   회원가입 버튼
+================================================== */
+
+.signupButton {
+  width: 100%;
+  height: 58px;
+
+  margin-top: 8px;
+
+  border: 0;
+
+  border-radius: 9px;
+
+  background: linear-gradient(
+    135deg,
+    #6d28d9,
+    #ec4899
+  );
+
+  color: #ffffff;
+
+  font-size: 18px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+
+/* ==================================================
+   로그인 이동 영역
+================================================== */
+
+.loginGuide {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 24px;
+
+  color: #9999aa;
+
+  font-size: 14px;
+
+  button {
+    border: 0;
+
+    background: transparent;
+
+    color: #d946ef;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+  }
+}
+
+/* ==================================================
+   비밀번호 입력창 + 보기/숨기기 버튼
+================================================== */
+
+.passwordInputArea {
+  position: relative;
+
+  width: 100%;
+
+  input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    // 오른쪽 보기 버튼과 입력 글자가
+    // 겹치지 않도록 공간 확보
+    padding-right: 55px;
+  }
+}
+
+
+/* ==================================================
+   비밀번호 보기 / 숨기기 버튼
+================================================== */
+
+.passwordToggle {
+  position: absolute;
+
+  top: 50%;
+  right: 14px;
+
+  transform: translateY(-50%);
+
+  width: 34px;
+  height: 34px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #9d9dac;
+
+  font-size: 19px;
+
+  cursor: pointer;
+
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+/* ==================================================
+   아이디 / 닉네임 + 중복확인 버튼 영역
+================================================== */
+
+.checkInputArea {
+  display: flex;
+
+  gap: 10px;
+
+  width: 100%;
+
+  input {
+    // 남은 공간을 입력창이 모두 사용
+    flex: 1;
+
+    min-width: 0;
+  }
+}
+
+
+/* ==================================================
+   중복확인 버튼
+================================================== */
+
+.checkButton {
+  width: 100px;
+  height: 54px;
+
+  flex-shrink: 0;
+
+  border: 1px solid #a855f7;
+
+  border-radius: 9px;
+
+  background: rgba(168, 85, 247, 0.08);
+
+  color: #d8b4fe;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(168, 85, 247, 0.18);
+
+    box-shadow:
+      0 0 10px rgba(168, 85, 247, 0.25);
+  }
+}
+
+
+/* ==================================================
+   중복확인 성공 메시지
+================================================== */
+
+.checkMessage {
+  color: #a78bfa;
+
+  font-size: 13px;
+}
+
+/* ==================================================
+   비밀번호 규칙 안내
+================================================== */
+
+.passwordGuide {
+  color: #77778b;
+
+  font-size: 12px;
+}
+
+/* ==================================================
+   선택 입력 표시
+================================================== */
+
+.optional {
+  color: #77778b;
+
+  font-size: 12px;
+
+  font-weight: 400;
+}
