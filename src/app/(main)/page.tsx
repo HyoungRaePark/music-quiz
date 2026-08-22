@@ -39,16 +39,17 @@ export default function Home() {
         </p>
 
         <div className={styles.actions}>
+          
           <Link href="/game" className={styles.startButton}>
             <span>GAME START</span>
             <span className={styles.startArrow}></span>
           </Link>
 
-        <button className={styles.rankingButton}>
-          <span className={styles.rankingIcon}>♛</span>
-          <span>RANKING</span>
-          <span className={styles.rankingArrow}></span>
-        </button>
+          <Link href="/game/ranking" className={styles.rankingButton}>
+            <span className={styles.rankingIcon}>♛</span>
+            <span>RANKING</span>
+            <span className={styles.rankingArrow}></span>
+          </Link>
         
         </div>
       </div>

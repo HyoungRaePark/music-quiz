@@ -1,0 +1,682 @@
+/* ==================================================
+   BOARD 페이지 전체
+================================================== */
+
+.boardPage {
+  min-height: 100vh;
+
+  /* 사이드바 250px 제외 */
+  width: calc(100% - 250px);
+  margin-left: 250px;
+
+  color: #ffffff;
+
+  background:
+    radial-gradient(
+      circle at 50% 15%,
+      rgba(55, 40, 130, 0.08),
+      transparent 35%
+    ),
+    #050713;
+
+  box-sizing: border-box;
+}
+
+
+/* ==================================================
+   BOARD 콘텐츠 전체
+
+   랭킹과 달리 BOARD는 내부에
+   게시글 영역 + 오른쪽 보조패널이 있으므로
+   오른쪽 310px 여백을 사용하지 않는다.
+================================================== */
+
+.boardContainer {
+  width: 100%;
+
+  padding:
+    32px
+    52px
+    40px;
+
+  box-sizing: border-box;
+}
+
+
+/* ==================================================
+   상단 제목 / 사용자 영역
+================================================== */
+
+.boardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 30px;
+}
+
+.titleArea {
+  display: flex;
+  align-items: baseline;
+
+  gap: 22px;
+
+  min-width: 0;
+
+  h1 {
+    margin: 0;
+
+    flex-shrink: 0;
+
+    font-size: 40px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+  }
+
+  p {
+    margin: 0;
+
+    color: #918d9c;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+  }
+}
+
+
+/* ==================================================
+   우측 알림 / 프로필
+================================================== */
+
+.userArea {
+  display: flex;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  gap: 14px;
+}
+
+.notificationButton {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #bbb6c7;
+
+  font-size: 20px;
+
+  background:
+    rgba(8, 9, 23, 0.6);
+
+  border:
+    1px solid rgba(110, 83, 151, 0.2);
+
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  &:hover {
+    color: #ffffff;
+
+    border-color:
+      rgba(167, 88, 255, 0.55);
+  }
+}
+
+.profileButton {
+  height: 44px;
+
+  padding: 0 12px 0 6px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  color: #ffffff;
+
+  background:
+    rgba(8, 9, 23, 0.65);
+
+  border:
+    1px solid rgba(110, 83, 151, 0.2);
+
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  &:hover {
+    border-color:
+      rgba(167, 88, 255, 0.55);
+  }
+}
+
+.profileImage {
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #864dff,
+      #cf55d9
+    );
+
+  box-shadow:
+    0 0 10px
+    rgba(154, 76, 255, 0.35);
+}
+
+.nickname {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.profileArrow {
+  color: #777282;
+
+  font-size: 12px;
+}
+
+
+/* ==================================================
+   상단 4개 게시판 탭
+================================================== */
+
+.boardTabs {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 14px;
+
+  margin-bottom: 22px;
+}
+
+.tabButton {
+  min-width: 0;
+  height: 54px;
+
+  color: #aaa6b7;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  background:
+    rgba(8, 9, 23, 0.88);
+
+  border:
+    1px solid
+    rgba(110, 83, 151, 0.35);
+
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  &:hover {
+    color: #ffffff;
+
+    border-color:
+      rgba(176, 83, 255, 0.55);
+  }
+}
+
+.activeTab {
+  color: #ffffff;
+
+  border-color:
+    rgba(195, 76, 255, 0.8);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(80, 43, 183, 0.85),
+      rgba(182, 48, 176, 0.75)
+    );
+
+  box-shadow:
+    0 0 14px
+    rgba(155, 61, 255, 0.25);
+}
+
+
+/* ==================================================
+   게시판 본문 전체
+
+   하나의 큰 박스 안에서:
+   왼쪽 게시판 / 오른쪽 보조 패널
+
+   오른쪽 패널은 고정 260px.
+   왼쪽은 남은 공간만 사용한다.
+================================================== */
+
+.boardBody {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    260px;
+
+  gap: 20px;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 20px;
+
+  background:
+    rgba(5, 7, 18, 0.72);
+
+  border:
+    1px solid
+    rgba(111, 80, 160, 0.25);
+
+  border-radius: 12px;
+
+  box-sizing: border-box;
+}
+
+
+/* ==================================================
+   왼쪽 게시판 영역
+================================================== */
+
+.boardMain {
+  min-width: 0;
+}
+
+
+/* ==================================================
+   게시글 목록
+================================================== */
+
+.postList {
+  width: 100%;
+  min-width: 0;
+
+  overflow: hidden;
+
+  background:
+    rgba(5, 6, 17, 0.8);
+
+  border:
+    1px solid
+    rgba(107, 80, 151, 0.25);
+
+  border-radius: 9px;
+
+  box-sizing: border-box;
+}
+
+
+/*
+   게시글 컬럼
+
+   번호 / 제목 / 작성자 / 날짜 / 조회수
+
+   제목이 남는 공간을 사용하고
+   나머지는 고정 폭을 사용한다.
+*/
+
+.postHeader,
+.postRow {
+  display: grid;
+
+  grid-template-columns:
+    72px
+    minmax(0, 1fr)
+    120px
+    115px
+    70px;
+
+  align-items: center;
+
+  column-gap: 14px;
+
+  padding: 0 20px;
+
+  box-sizing: border-box;
+}
+
+
+/* ==================================================
+   게시판 제목 행
+================================================== */
+
+.postHeader {
+  height: 48px;
+
+  color: #c5c0cf;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(45, 22, 82, 0.92),
+      rgba(27, 19, 58, 0.9)
+    );
+}
+
+
+/* ==================================================
+   게시글 한 줄
+================================================== */
+
+.postRow {
+  min-height: 58px;
+
+  color: #bbb7c5;
+
+  font-size: 14px;
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.055);
+
+  transition: background 0.2s;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background:
+      rgba(87, 54, 145, 0.08);
+  }
+
+  /*
+    제목이 너무 길 경우 오른쪽 영역을
+    밀어내지 않도록 처리
+  */
+  span:nth-child(2) {
+    min-width: 0;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+  }
+}
+
+
+/* ==================================================
+   페이지네이션
+
+   boardMain 내부에 있기 때문에
+   게시글 목록 기준으로 중앙에 위치
+================================================== */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  margin-top: 22px;
+
+  button {
+    width: 34px;
+    height: 34px;
+
+    color: #85818f;
+
+    background:
+      rgba(10, 11, 27, 0.55);
+
+    border:
+      1px solid transparent;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    &:hover {
+      color: #ffffff;
+
+      border-color:
+        rgba(128, 86, 200, 0.3);
+    }
+  }
+}
+
+.pagination .currentPage {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6b3cff,
+      #c245dc
+    );
+
+  border-color:
+    rgba(174, 88, 255, 0.5);
+
+  box-shadow:
+    0 0 10px
+    rgba(148, 68, 255, 0.35);
+}
+
+
+/* ==================================================
+   오른쪽 보조 패널
+================================================== */
+
+.boardSide {
+  width: 260px;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+
+/* ==================================================
+   검색
+================================================== */
+
+.searchBox {
+  width: 100%;
+  height: 44px;
+
+  display: flex;
+
+  overflow: hidden;
+
+  background:
+    rgba(8, 9, 23, 0.9);
+
+  border:
+    1px solid
+    rgba(111, 83, 151, 0.35);
+
+  border-radius: 8px;
+
+  box-sizing: border-box;
+
+  input {
+    min-width: 0;
+
+    flex: 1;
+
+    padding: 0 12px;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    background: transparent;
+
+    border: none;
+    outline: none;
+
+    &::placeholder {
+      color: #625e6d;
+    }
+  }
+
+  button {
+    width: 44px;
+
+    flex-shrink: 0;
+
+    color: #aaa5b6;
+
+    background: transparent;
+
+    border: none;
+
+    cursor: pointer;
+  }
+}
+
+
+/* ==================================================
+   글쓰기 버튼
+================================================== */
+
+.writeButton {
+  width: 100%;
+  height: 44px;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  background:
+    linear-gradient(
+      90deg,
+      #6238e8,
+      #b942d0
+    );
+
+  border:
+    1px solid
+    rgba(186, 84, 255, 0.65);
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 0 10px
+    rgba(142, 63, 255, 0.18);
+}
+
+
+/* ==================================================
+   오른쪽 카테고리 / 이용 안내 공통
+================================================== */
+
+.sidePanel,
+.guidePanel {
+  width: 100%;
+
+  padding: 18px;
+
+  background:
+    rgba(8, 9, 23, 0.88);
+
+  border:
+    1px solid
+    rgba(111, 83, 151, 0.25);
+
+  border-radius: 9px;
+
+  box-sizing: border-box;
+
+  h2 {
+    margin: 0 0 16px;
+
+    color: #d4cfdd;
+
+    font-size: 14px;
+  }
+}
+
+
+/* ==================================================
+   카테고리 한 줄
+================================================== */
+
+.categoryRow {
+  width: 100%;
+  min-height: 36px;
+
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  color: #8e8999;
+
+  font-size: 13px;
+
+  background: transparent;
+  border: none;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+.categoryActive {
+  color: #e965ff;
+
+  text-shadow:
+    0 0 8px rgba(225, 86, 255, 0.35);
+}
+
+
+/* ==================================================
+   이용 안내
+================================================== */
+
+.guidePanel {
+  p {
+    margin: 8px 0 0;
+
+    color: #716d7c;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+  }
+}

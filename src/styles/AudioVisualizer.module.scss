@@ -14,3 +14,21 @@
   width: 100%;
   height: 1000px;
 }
+
+/* ==================================================
+   BGM ON / OFF에 따른 이퀄라이저 표시
+================================================== */
+
+.visualizer {
+  transition: opacity 0.25s ease;
+}
+
+/* BGM ON */
+.visible {
+  opacity: 1;
+}
+
+/* BGM OFF */
+.hidden {
+  opacity: 0;
+}

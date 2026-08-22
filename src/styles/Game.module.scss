@@ -36,6 +36,7 @@
 
 .backButton,
 .skipButton {
+  text-decoration: none;
   height: clamp(46px, 5.5vh, 60px);
 
   padding: 0 clamp(18px, 1.5vw, 26px);

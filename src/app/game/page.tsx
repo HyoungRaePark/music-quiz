@@ -151,10 +151,13 @@ export default function GamePage() {
           <span>뒤로가기</span>
         </Link>
 
-        <button className={styles.skipButton}>
+        <Link
+          href="/game/mode"
+          className={styles.skipButton}
+        >
           <span>건너뛰기</span>
           <span className={styles.skipIcon}>≫</span>
-        </button>
+        </Link>
       </div>
     </section>
   );

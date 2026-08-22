@@ -521,22 +521,26 @@ export default function GamePlayPage() {
         </section>
 
         {/* 게임 시작 버튼 */}
-        {!isStarted && !isGameOver && (
-          <div className={styles.startArea}>
+        {/* 게임 시작 영역
+            게임이 시작되어도 startArea 자체는 남겨서
+            정답 입력칸의 위치가 움직이지 않도록 한다.
+        */}
+        <div className={styles.startArea}>
+          {!isStarted && !isGameOver && (
+            <>
+              <p className={styles.readyText}>
+                READY?
+              </p>
 
-            <p className={styles.readyText}>
-              READY?
-            </p>
-
-            <button
-              className={styles.startButton}
-              onClick={handleStartGame}
-            >
-              START
-            </button>
-
-          </div>
-        )}
+              <button
+                className={styles.startButton}
+                onClick={handleStartGame}
+              >
+                START
+              </button>
+            </>
+          )}
+        </div>
 
         {/* 정답 */}
         {resultType === "correct" && (
