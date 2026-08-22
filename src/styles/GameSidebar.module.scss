@@ -1,0 +1,422 @@
+/* ==================================================
+   사이드바 전체
+================================================== */
+
+.sidebar {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  z-index: 100;
+
+  width: 280px;
+  height: 100vh;
+
+  padding: 34px 30px 26px;
+
+  display: flex;
+  flex-direction: column;
+
+  background:
+    radial-gradient(
+      circle at 35% 15%,
+      rgba(91, 49, 151, 0.14),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #070817 0%,
+      #050611 100%
+    );
+
+  border-right:
+    1px solid rgba(166, 72, 255, 0.35);
+
+  box-shadow:
+    10px 0 35px rgba(18, 9, 45, 0.3);
+}
+
+/* ==================================================
+   로고
+================================================== */
+
+.logoArea {
+  padding: 0;
+  margin-bottom: 58px;
+
+  background: transparent;
+  border: none;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.logoTitle {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  color: #ffffff;
+
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 1px;
+
+  text-shadow:
+    0 0 8px rgba(104, 173, 255, 0.95),
+    0 0 18px rgba(212, 74, 255, 0.75);
+}
+
+.logoIcon {
+  color: #e45cff;
+  font-size: 27px;
+
+  text-shadow:
+    0 0 8px rgba(228, 92, 255, 1),
+    0 0 18px rgba(129, 83, 255, 0.85);
+}
+
+.logoSubtitle {
+  display: block;
+
+  margin-top: 7px;
+  margin-left: 35px;
+
+  color: #777283;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 1.4px;
+}
+
+/* ==================================================
+   메뉴
+================================================== */
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  button {
+    width: 100%;
+    min-height: 50px;
+
+    padding: 0 15px;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    color: #c0bccb;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-align: left;
+
+    background: transparent;
+
+    border: 1px solid transparent;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    &:hover {
+      color: #ffffff;
+
+      background:
+        rgba(97, 66, 164, 0.12);
+    }
+  }
+}
+
+.menuIcon {
+  width: 22px;
+
+  flex-shrink: 0;
+
+  text-align: center;
+
+  font-size: 18px;
+}
+
+
+/* ==================================================
+   현재 페이지 활성 메뉴
+================================================== */
+
+.active {
+  position: relative;
+
+  /* 시안의 밝은 블루 */
+  color: #7da5ff !important;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(30, 37, 91, 0.92) 0%,
+      rgba(43, 27, 85, 0.88) 55%,
+      rgba(52, 24, 80, 0.82) 100%
+    ) !important;
+
+  border-color:
+    rgba(103, 80, 220, 0.15) !important;
+
+  box-shadow:
+    inset 0 0 18px rgba(85, 74, 255, 0.07),
+    0 0 16px rgba(61, 83, 255, 0.1);
+
+  text-shadow:
+    0 0 7px rgba(90, 142, 255, 0.65);
+
+  /* 왼쪽 파란 네온 선 */
+  &::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 9px;
+
+    width: 3px;
+    height: calc(100% - 18px);
+
+    border-radius: 0 4px 4px 0;
+
+    background:
+      linear-gradient(
+        180deg,
+        #55d7ff,
+        #557cff
+      );
+
+    box-shadow:
+      0 0 6px rgba(73, 190, 255, 1),
+      0 0 13px rgba(74, 111, 255, 0.75);
+  }
+
+  /* RANKING 아이콘 */
+  .menuIcon {
+    color: #68b8ff;
+
+    text-shadow:
+      0 0 6px rgba(75, 174, 255, 0.9),
+      0 0 12px rgba(76, 104, 255, 0.55);
+  }
+}
+
+/* ==================================================
+   계정 영역
+================================================== */
+
+.accountArea {
+  margin-top: 18px;
+  padding-top: 18px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.07);
+}
+
+.accountButton {
+  width: 100%;
+  min-height: 48px;
+
+  padding: 0 15px;
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  color: #c9c4d2;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  background: transparent;
+  border: none;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  &:hover {
+    color: #ffffff;
+
+    background:
+      rgba(255, 255, 255, 0.04);
+  }
+}
+
+/* ==================================================
+   BGM 영역
+================================================== */
+
+.bgmArea {
+  margin-top: auto;
+  margin-bottom: 20px;
+
+  min-height: 84px;
+
+  padding: 14px 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(11, 12, 30, 0.85),
+      rgba(7, 8, 20, 0.9)
+    );
+
+  border:
+    1px solid rgba(120, 90, 180, 0.28);
+
+  border-radius: 10px;
+
+  box-shadow:
+    inset 0 0 16px rgba(80, 58, 140, 0.08);
+}
+
+.bgmLabel {
+  color: #fff;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.bgmToggle {
+  min-width: 52px;
+
+  padding: 7px 12px;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  border-radius: 18px;
+
+  cursor: pointer;
+}
+
+/* ==================================================
+   BGM ON 상태 - 박스 전체 네온
+================================================== */
+
+.bgmAreaOn {
+  border-color: rgba(226, 78, 255, 0.85);
+
+  box-shadow:
+    0 0 8px rgba(221, 73, 255, 0.35),
+    0 0 18px rgba(123, 75, 255, 0.18),
+    inset 0 0 16px rgba(201, 69, 255, 0.08);
+}
+
+//브금 off
+.bgmOn {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      90deg,
+      #7d39ff,
+      #d94ccc
+    );
+
+  border-color:
+    rgba(235, 116, 255, 0.8);
+
+  box-shadow:
+    0 0 10px rgba(204, 80, 255, 0.45),
+    0 0 20px rgba(118, 75, 255, 0.28);
+}
+
+.bgmOff {
+  color: #777486;
+
+  background:
+    rgba(55, 52, 72, 0.35);
+
+  border-color:
+    rgba(120, 115, 145, 0.25);
+
+  box-shadow: none;
+}
+
+//게임 시작버튼
+.gameStartButton {
+  width: 100%;
+  min-height: 58px;
+
+  margin-bottom: 18px;
+  padding: 0 15px;
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  /* 핵심: 글자부터 핑크 네온 */
+  color: #ff9bf2;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(64, 19, 77, 0.72),
+      rgba(33, 16, 59, 0.68)
+    );
+
+  /* 시안처럼 밝은 핑크 테두리 */
+  border: 1.5px solid #ed4ddd;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  /* 바깥쪽 네온 */
+  box-shadow:
+    0 0 5px rgba(255, 74, 222, 0.8),
+    0 0 14px rgba(232, 63, 221, 0.38),
+    inset 0 0 12px rgba(255, 76, 225, 0.08);
+
+  /* 글자 자체에도 네온 */
+  text-shadow:
+    0 0 5px rgba(255, 119, 235, 0.8),
+    0 0 12px rgba(255, 70, 222, 0.45);
+
+  transition: 0.2s;
+
+  &:hover {
+    color: #ffd4f8;
+
+    border-color: #ff69e8;
+
+    box-shadow:
+      0 0 7px rgba(255, 91, 228, 1),
+      0 0 18px rgba(239, 66, 221, 0.55),
+      inset 0 0 15px rgba(255, 85, 225, 0.12);
+  }
+
+  .menuIcon {
+    color: #ffb1f2;
+
+    text-shadow:
+      0 0 6px rgba(255, 93, 229, 0.9),
+      0 0 13px rgba(255, 68, 218, 0.5);
+  }
+}
+
+.gameStartActive {
+  color: #ffffff;
+
+  box-shadow:
+    0 0 14px rgba(237, 72, 255, 0.45),
+    inset 0 0 12px rgba(155, 68, 255, 0.12);
+}
