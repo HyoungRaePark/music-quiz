@@ -1,0 +1,190 @@
+/* 시간 초과 시 현재 게임 화면 위에 표시되는 결과 패널 */
+
+.result {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 30;
+
+  width: min(480px, calc(100vw - 48px));
+  max-height: calc(100vh - 260px);
+
+  padding: clamp(30px, 4vw, 44px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  transform: translate(-50%, -50%);
+
+  border: 1px solid rgba(255, 180, 80, 0.7);
+  border-radius: clamp(14px, 1.5vw, 20px);
+
+  background: rgba(18, 10, 25, 0.94);
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 20px rgba(255, 170, 70, 0.3),
+    0 0 60px rgba(180, 90, 20, 0.18);
+
+  text-align: center;
+
+  animation: timeoutAppear 0.4s ease-out both;
+}
+
+/* 시간 초과 아이콘 */
+
+.icon {
+  width: 68px;
+  height: 68px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 14px;
+
+  border: 1px solid rgba(255, 190, 90, 0.8);
+  border-radius: 50%;
+
+  background: rgba(40, 20, 5, 0.9);
+
+  color: #ffc16b;
+
+  font-size: 34px;
+
+  box-shadow:
+    0 0 16px rgba(255, 170, 70, 0.65),
+    0 0 35px rgba(255, 130, 30, 0.25);
+}
+
+/* 시간 초과 */
+
+.result h2 {
+  margin: 0;
+
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 900;
+
+  letter-spacing: 2px;
+
+  color: #ffffff;
+
+  text-shadow:
+    0 0 12px rgba(255, 190, 100, 0.9),
+    0 0 28px rgba(255, 140, 40, 0.55);
+}
+
+/* 목숨 감소 */
+
+.result p {
+  margin: 12px 0 0;
+
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 700;
+
+  color: #ff9d8a;
+
+  text-shadow:
+    0 0 10px rgba(255, 100, 80, 0.45);
+}
+
+/* 정답 영역 */
+
+.answer {
+  width: min(100%, 320px);
+
+  margin-top: 20px;
+  padding: 12px 20px;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(255, 180, 80, 0.5);
+  border-radius: 10px;
+
+  background: rgba(10, 5, 20, 0.8);
+
+  color: rgba(255, 255, 255, 0.9);
+
+  font-size: clamp(15px, 1.8vw, 18px);
+  font-weight: 700;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  box-shadow:
+    0 0 14px rgba(255, 150, 50, 0.15);
+}
+
+/* 다음 문제 버튼 */
+
+.result button {
+  width: min(260px, 100%);
+
+  margin-top: 26px;
+  padding: clamp(12px, 1.5vw, 15px) 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(255, 190, 100, 0.75);
+  border-radius: 12px;
+
+  background: rgba(50, 25, 10, 0.95);
+
+  color: #ffffff;
+
+  font-size: clamp(14px, 1.5vw, 17px);
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 0 14px rgba(255, 160, 60, 0.3);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.result button:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(255, 215, 150, 1);
+
+  box-shadow:
+    0 0 20px rgba(255, 180, 80, 0.65),
+    0 0 35px rgba(180, 90, 20, 0.3);
+}
+
+.result button:active {
+  transform: translateY(0);
+}
+
+/* 등장 애니메이션 */
+
+@keyframes timeoutAppear {
+  from {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -47%)
+      scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+}

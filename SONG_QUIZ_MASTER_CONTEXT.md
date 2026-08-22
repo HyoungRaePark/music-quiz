@@ -55,7 +55,7 @@
 /game/board
 ```
 
-현재 구현 진행점은 `/game/mode`까지이며, 다음 작업은 `/game/play`입니다.
+현재 구현 진행점은 `/game/play`까지 완료되었으며, 게임 플레이 화면의 핵심 흐름과 결과 화면까지 연결된 상태입니다. 다음 작업은 랭킹/게시판/로그인 등 나머지 화면 구현입니다.
 
 ---
 
@@ -578,7 +578,168 @@ HARD는 잠금 상태이므로 이동하지 않습니다.
 
 ---
 
-## 18. 개발 진행 원칙
+## 18. `/game/play` 현재 구현 상태
+
+`/game/play?mode=...` 게임 플레이 화면은 현재 기능적으로 정상 작동합니다.
+
+### 현재 파일 구조
+```text
+src
+├─ app
+│  └─ game
+│     ├─ mode
+│     ├─ play
+│     ├─ ranking       ← 다음 구현 대상
+│     └─ board         ← 다음 구현 대상
+├─ components
+│  ├─ AudioVisualizer.tsx
+│  ├─ BgmProvider.tsx
+│  ├─ CorrectResult.tsx
+│  ├─ Footer.tsx
+│  ├─ GameHeader.tsx
+│  ├─ Header.tsx
+│  ├─ TimeoutResult.tsx
+│  └─ WrongResult.tsx
+└─ styles
+   ├─ CorrectResult.module.scss
+   ├─ Game.module.scss
+   ├─ GameHeader.module.scss
+   ├─ Play.module.scss
+   ├─ TimeoutResult.module.scss
+   └─ WrongResult.module.scss
+```
+
+### 게임 상태
+- 문제당 테스트 시간은 현재 5초로 설정되어 있습니다. 최종 규칙은 30초입니다.
+- 목숨 3개.
+- 정답 시 기본 점수 + 남은 시간 보너스.
+- 정답 시 combo +1.
+- 오답 시 목숨 감소 없음.
+- 시간초과 시 목숨 -1.
+- 마지막 목숨이 0이 되면 게임오버.
+- 현재 테스트 곡은 `Hype Boy`, `좋은 날`, `Blue Valentine`입니다.
+- 현재 테스트용 음원은 `/public/audio/`의 mp3 파일을 사용합니다.
+- 한 게임에서 다음 문제로 이동할 때 기존 음악을 정지하고 다음 음악을 재생합니다.
+- 결과 화면이 표시된 동안에는 타이머가 진행되지 않습니다.
+
+### 결과 컴포넌트
+정답/오답/시간초과를 각각 별도 컴포넌트와 SCSS Module로 분리했습니다.
+```text
+CorrectResult.tsx      + CorrectResult.module.scss
+WrongResult.tsx        + WrongResult.module.scss
+TimeoutResult.tsx      + TimeoutResult.module.scss
+```
+
+정답/시간초과 화면에는 `다음 문제로` 버튼이 있으며 `goToNextQuestion`과 연결되어 있습니다.
+오답 화면도 별도 컴포넌트로 분리되어 있으며 현재 오답 안내가 표시된 뒤 사라지는 애니메이션까지 적용되어 있습니다.
+
+### 게임오버
+게임오버 상태 자체의 기능 연결은 완료했습니다. 현재 플레이 화면의 테스트용 GAME OVER 표시가 있으며, 실제 게임오버 결과 화면은 별도의 화면으로 새로 구성할 예정입니다.
+현재 디자인은 다음 시안 방향을 기준으로 합니다.
+- GAME OVER 제목
+- 맞힌 문제 수
+- 최종 SCORE
+- 개인 BEST SCORE
+- 등급
+- BEST SCORE / 신기록 여부
+- 다시 도전
+- 나가기
+- TIP
+실제 개인 최고 점수/신기록 여부는 DB 연결 후 처리합니다.
+
+### 플레이 화면 상단 HUD
+현재 `LIVES / COMBO / SCORE`를 한 줄에 배치했습니다.
+- LIVES: 왼쪽 정렬
+- COMBO: 가운데
+- SCORE: 오른쪽
+- score가 5자리 이상이 되어도 사용할 수 있도록 현재 영역을 확보해 둡니다.
+
+### 플레이 화면 음악 비주얼
+LP판 양옆의 파형은 기존 막대형 CSS 이퀄라이저 대신 SVG 선형 waveform으로 변경했습니다.
+- 왼쪽: 핑크/보라 계열
+- 오른쪽: 보라/파랑 계열
+- SVG path가 움직이며 음악이 흐르는 느낌을 표현
+- `stroke-dashoffset` 기반 흐름 애니메이션과 opacity 변화 사용
+- 현재는 실제 음원 분석 데이터와 연결하지 않은 장식용 애니메이션
+- 메인 `AudioVisualizer`와는 별도의 디자인
+
+### 플레이 화면 반응형
+`/game/play`의 반응형은 아직 정리하지 않습니다. 주요 화면 전체 구현이 끝난 뒤 SCSS를 한 번에 정리합니다.
+
+---
+
+## 19. 현재 Header 라우팅 상태
+
+`Header.tsx`에서 `useRouter()`를 사용하고 있으며 현재 구조는 다음과 같습니다.
+```tsx
+<nav className={styles.nav}>
+  <button onClick={() => router.push("/game/mode")}>
+    GAME
+  </button>
+
+  <button onClick={() => router.push("/game/ranking")}>
+    RANKING
+  </button>
+
+  <button onClick={() => router.push("/game/board")}>
+    BOARD
+  </button>
+</nav>
+```
+
+즉 앞으로 페이지 구조도 다음 주소를 기준으로 맞춥니다.
+```text
+GAME    → /game/mode
+RANKING → /game/ranking
+BOARD   → /game/board
+```
+`/game/ranking` 페이지는 아직 실제 화면을 만들지 않았으며, 다음 작업에서 생성합니다.
+
+---
+
+## 20. 프론트엔드 전체 화면 우선 구현 방향
+
+현재는 백엔드/DB를 붙이지 않고 화면단을 먼저 완성합니다.
+
+우선순위:
+```text
+게임 플레이 완료
+↓
+랭킹 화면
+↓
+게시판 화면
+↓
+게시글 상세 / 댓글
+↓
+로그인 / 회원가입
+↓
+게스트 / 회원 상태 화면
+↓
+곡 요청 화면
+↓
+필요한 기타 화면
+↓
+화면 간 이동 전체 확인
+↓
+API 명세 확정
+↓
+백엔드 + DB 구현
+↓
+mock 데이터 → 실제 API 데이터 교체
+```
+
+### 현재 프론트 단계 원칙
+- 화면과 기본 이동을 먼저 완성합니다.
+- 테스트용 mock 데이터/하드코딩을 사용합니다.
+- 랭킹/게시판/회원 데이터는 아직 DB에서 조회하지 않습니다.
+- 실제 API 연결은 전체 화면 흐름을 확인한 뒤 시작합니다.
+- 화면 구현 중 필요한 데이터가 무엇인지 확인한 뒤 API/DB 필드를 확정합니다.
+
+---
+
+---
+
+## 21. 개발 진행 원칙
 
 이 프로젝트는 사용자가 직접 배우면서 구현하는 프로젝트입니다.
 
@@ -608,19 +769,21 @@ HARD는 잠금 상태이므로 이동하지 않습니다.
 
 ---
 
-# 새 채팅에서 바로 이어갈 지점
+## 22. 새 채팅에서 바로 이어갈 지점
 
 다음 채팅에서는 처음부터 설계를 다시 하지 않습니다.
 
 다음 문장으로 바로 시작하면 됩니다.
 
-> `/game/mode`까지 완료했다. 이제 `/game/play`을 만들자.
+> `/game/play` 기능 연결까지 완료했다. 이제 `/game/ranking` 화면부터 만들자.
 
 가장 먼저:
-1. `/game/play/page.tsx` 생성
-2. `mode` query parameter 확인
-3. K-POP/J-POP/POP PLAY 버튼 연결
-4. 그 다음 게임 플레이 UI 구현
+1. `Header.tsx`의 RANKING 버튼이 `/game/ranking`으로 이동하는지 확인
+2. `src/app/game/ranking/page.tsx` 생성
+3. 랭킹 화면 UI 구현
+4. 그 다음 `/game/board` 화면 구현
+5. 로그인/회원가입 등 나머지 화면 구현
+6. 전체 화면 흐름 확인 후 API → 백엔드 → DB 연결
 
 현재 프로젝트 단계:
 
@@ -629,7 +792,15 @@ HARD는 잠금 상태이므로 이동하지 않습니다.
    ↓
 취향 선택 완료
    ↓
-모드 선택 거의 완료
+모드 선택 완료
    ↓
-★ 게임 플레이 구현 시작
+게임 플레이 완료
+   ↓
+정답/오답/시간초과 컴포넌트 분리 완료
+   ↓
+게임오버 기능 연결 완료
+   ↓
+★ 랭킹 / 게시판 / 회원 관련 화면 구현 시작
+   ↓
+API → 백엔드 → DB
 ```

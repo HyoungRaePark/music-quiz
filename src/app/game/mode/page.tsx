@@ -1,6 +1,5 @@
 "use client";
-
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useBgm } from "@/components/BgmProvider";
 import GameHeader from "@/components/GameHeader";
 import styles from "../../../styles/Mode.module.scss";
@@ -11,6 +10,7 @@ export default function GameModePage() {
   const searchParams = useSearchParams();
   const selectedGenre = searchParams.get("genre");
   const { playPreview, stopPreview } = useBgm();
+  const router = useRouter();
   return (
     <>
       <GameHeader />
@@ -95,10 +95,10 @@ export default function GameModePage() {
                 <span>난이도 ★★☆</span>
               </div>
 
-              <button>
+                <button onClick={() => router.push("/game/play?mode=K-POP")}>
                 <span>PLAY</span>
                 <span className={styles.playArrow}>›</span>
-              </button>
+                </button>
             </article>
           </div>
 
@@ -137,10 +137,10 @@ export default function GameModePage() {
                 <span>난이도 ★★☆</span>
               </div>
 
-              <button>
+                <button onClick={() => router.push("/game/play?mode=J-POP")}>
                 <span>PLAY</span>
                 <span className={styles.playArrow}>›</span>
-              </button>
+                </button>
 
             </article>
           </div>
@@ -178,10 +178,10 @@ export default function GameModePage() {
                 <span>난이도 ★★★</span>
               </div>
 
-                <button>
-                 <span>PLAY</span>
-                  <span className={styles.playArrow}>›</span>
-              </button>
+                <button onClick={() => router.push("/game/play?mode=POP")}>
+                <span>PLAY</span>
+                <span className={styles.playArrow}>›</span>
+                </button>
             </article>
           </div>
 

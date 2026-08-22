@@ -104,6 +104,11 @@ export function BgmProvider({ children }: { children: ReactNode }) {
   // ==============================
 
   const toggleBgm = async () => {
+
+    if (pathname === "/game/play") {
+      return;
+    }
+
     const audio = audioRef.current;
     const preview = previewAudioRef.current;
 
@@ -222,36 +227,45 @@ export function BgmProvider({ children }: { children: ReactNode }) {
   // 페이지 변경 시 BGM 변경
   // ==============================
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    const preview = previewAudioRef.current;
+useEffect(() => {
+  const audio = audioRef.current;
+  const preview = previewAudioRef.current;
 
-    if (!audio) return;
+  if (!audio) return;
 
-    // 페이지 이동 시 미리듣기 종료
-    if (preview) {
-      preview.pause();
-      preview.currentTime = 0;
-    }
+  // 페이지 이동 시 미리듣기 종료
+  if (preview) {
+    preview.pause();
+    preview.currentTime = 0;
+  }
 
-    // 새로운 페이지의 BGM은 처음부터
+  // 게임 플레이 화면에서는 기본 BGM을 사용하지 않음
+  if (pathname === "/game/play") {
+    audio.pause();
     audio.currentTime = 0;
+    setIsPlaying(false);
 
-    // 기존에 BGM ON 상태였다면
-    // 새로운 페이지 BGM도 재생
-    if (isPlaying) {
-      audio.play().catch((error) => {
-        if (isAbortError(error)) {
-          return;
-        }
+    return;
+  }
 
-        console.error(
-          "BGM 전환 실패:",
-          error
-        );
-      });
-    }
-  }, [bgmSrc]);
+  // 새로운 페이지의 BGM은 처음부터
+  audio.currentTime = 0;
+
+  // 기존에 BGM ON 상태였다면
+  // 새로운 페이지 BGM도 재생
+  if (isPlaying) {
+    audio.play().catch((error) => {
+      if (isAbortError(error)) {
+        return;
+      }
+
+      console.error(
+        "BGM 전환 실패:",
+        error
+      );
+    });
+  }
+}, [bgmSrc, pathname]);
 
   return (
     <BgmContext.Provider

@@ -1,0 +1,100 @@
+/* ==============================
+   오답 결과
+   ============================== */
+
+.wrongResult {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  z-index: 10;
+
+  min-width: 300px;
+
+  padding: 30px 45px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 8px;
+
+  border: 1px solid rgba(255, 70, 120, 0.8);
+  border-radius: 18px;
+
+  background: rgba(10, 3, 25, 0.96);
+
+  box-shadow:
+    0 0 20px rgba(255, 50, 120, 0.35),
+    inset 0 0 25px rgba(255, 50, 120, 0.08);
+
+  animation: wrongAppear 0.25s ease-out forwards;
+}
+
+/* 오답 아이콘 */
+
+.icon {
+  font-size: 36px;
+
+  color: #ff5c8a;
+
+  text-shadow:
+    0 0 12px rgba(255, 70, 130, 0.9);
+}
+
+/* 오답 텍스트 */
+
+.wrongResult strong {
+  font-size: 32px;
+  font-weight: 900;
+
+  color: #ff6b9a;
+
+  text-shadow:
+    0 0 12px rgba(255, 70, 130, 0.8);
+}
+
+.wrongResult span {
+  font-size: 14px;
+
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ==============================
+   등장
+   ============================== */
+
+@keyframes wrongAppear {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* ==============================
+   사라짐
+   ============================== */
+
+.closing {
+  animation: wrongDisappear 0.35s ease-in forwards;
+}
+
+@keyframes wrongDisappear {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+}
