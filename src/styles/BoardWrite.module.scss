@@ -1,0 +1,222 @@
+/* ==================================================
+   글쓰기 페이지 전체
+================================================== */
+
+.writePage {
+  min-height: 100vh;
+
+  // SONG QUIZ의 기본 어두운 배경
+  background: #070710;
+}
+
+
+/* ==================================================
+   글쓰기 메인 콘텐츠
+
+   Sidebar가 약 250px 너비로 고정되어 있으므로
+   margin-left로 Sidebar 영역을 제외한다.
+================================================== */
+
+.writeContainer {
+  min-height: 100vh;
+
+  // Sidebar 너비만큼 왼쪽 공간 제외
+  margin-left: 260px;
+
+  // margin-left를 제외한 실제 사용 가능한 화면 너비
+  width: calc(100% - 260px);
+
+  // 위아래 여백
+  padding: 32px 40px 50px;
+
+  // padding이 width에 추가되지 않도록 설정
+  box-sizing: border-box;
+
+  color: #ffffff;
+}
+
+/* ==================================================
+   상단 제목 영역
+================================================== */
+
+.writeHeader {
+  // 글쓰기 카드와 동일한 너비 사용
+  width: 100%;
+  max-width: 1200px;
+
+  // 남은 화면 영역에서 가운데 정렬
+  margin: 0 auto 28px;
+
+  h1 {
+    margin: 0 0 8px;
+    font-size: 36px;
+  }
+
+  p {
+    margin: 0;
+    color: #9d9daf;
+  }
+}
+
+/* ==================================================
+   실제 글 작성 카드
+================================================== */
+
+.writeCard {
+  width: 100%;
+  max-width: 1200px;
+
+  // Sidebar를 제외한 영역에서 가운데 정렬
+  margin: 0 auto;
+
+  box-sizing: border-box;
+
+  padding: 36px;
+
+  border: 1px solid rgba(151, 71, 255, 0.35);
+  border-radius: 20px;
+
+  background: rgba(15, 15, 30, 0.9);
+}
+
+
+/* ==================================================
+   카테고리 / 제목 / 내용 공통 영역
+================================================== */
+
+.formGroup {
+  display: flex;
+
+  // label과 입력창을 위아래로 배치
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-bottom: 26px;
+
+
+  /* 항목 이름 */
+  label {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+
+  /* input / select / textarea 공통 디자인 */
+  input,
+  select,
+  textarea {
+    width: 100%;
+
+    // padding 때문에 실제 크기가 커지는 것을 방지
+    box-sizing: border-box;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 10px;
+
+    background: #10101d;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    outline: none;
+  }
+
+
+  /* 제목 입력창과 카테고리 선택창 */
+  input,
+  select {
+    height: 48px;
+
+    padding: 0 14px;
+  }
+
+
+  /* 게시글 내용 입력창 */
+  textarea {
+    min-height: 320px;
+
+    padding: 14px;
+
+    // 사용자가 textarea 크기를 직접 변경하지 못하게 함
+    resize: none;
+  }
+
+
+  /* 입력창을 클릭했을 때 보라색 강조 */
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #a855f7;
+  }
+}
+
+
+/* ==================================================
+   글자 수 표시
+
+   textarea 오른쪽 아래에
+   0 / 2000 형태로 표시
+================================================== */
+
+.textCount {
+  text-align: right;
+
+  color: #77778b;
+
+  font-size: 13px;
+}
+
+
+/* ==================================================
+   취소 / 등록 버튼 영역
+================================================== */
+
+.buttonArea {
+  display: flex;
+
+  // 버튼을 오른쪽으로 정렬
+  justify-content: flex-end;
+
+  gap: 12px;
+}
+
+
+/* 두 버튼에서 공통으로 사용하는 스타일 */
+.cancelButton,
+.submitButton {
+  min-width: 110px;
+
+  height: 44px;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-weight: 700;
+}
+
+
+/* 취소 버튼 */
+.cancelButton {
+  background: #252535;
+
+  color: #c7c7d3;
+}
+
+
+/* 등록하기 버튼 */
+.submitButton {
+  // 기존 SONG QUIZ의 보라 → 핑크 계열 사용
+  background: linear-gradient(
+    135deg,
+    #7c3aed,
+    #ec4899
+  );
+
+  color: #ffffff;
+}
