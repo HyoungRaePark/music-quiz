@@ -19,7 +19,10 @@ export default function GameSidebar() {
 
     추후 로그인 Context 또는 전역 상태로 교체한다.
   */
-  const isLoggedIn = false;
+  // const isLoggedIn = false;
+
+  // 로그인 기능 구현 전 MY PAGE 테스트용
+const isLoggedIn = true;
 
   return (
     <aside className={styles.sidebar}>

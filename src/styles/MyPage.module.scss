@@ -1,0 +1,656 @@
+/* ==================================================
+   MY PAGE 전체
+================================================== */
+
+.myPage {
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(60, 20, 130, 0.12),
+      transparent 45%
+    ),
+    #05050f;
+
+  color: #ffffff;
+}
+
+
+/* ==================================================
+   메인 콘텐츠
+
+   Sidebar 약 260px을 제외한 영역 사용
+================================================== */
+
+.myPageContainer {
+  min-height: 100vh;
+
+  margin-left: 260px;
+
+  width: calc(100% - 260px);
+
+  box-sizing: border-box;
+
+  padding: 38px 42px 50px;
+}
+
+
+/* ==================================================
+   상단 제목 / 버튼
+================================================== */
+
+.pageHeader {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  max-width: 1450px;
+
+  margin: 0 auto 28px;
+
+  h1 {
+    margin: 0;
+
+    font-size: 34px;
+    font-weight: 800;
+  }
+
+  p {
+    margin: 8px 0 0;
+
+    color: #9a9aaa;
+
+    font-size: 14px;
+  }
+}
+
+
+.headerButtons {
+  display: flex;
+
+  gap: 14px;
+}
+
+
+.profileEditButton,
+.logoutButton {
+  min-width: 145px;
+  height: 46px;
+
+  border-radius: 9px;
+
+  background: transparent;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+.profileEditButton {
+  border: 1px solid rgba(168, 85, 247, 0.5);
+}
+
+
+.logoutButton {
+  border: 1px solid rgba(236, 72, 153, 0.55);
+
+  color: #f9a8d4;
+}
+
+
+/* ==================================================
+   상단 프로필 카드
+================================================== */
+
+.profileCard {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  max-width: 1450px;
+
+  margin: 0 auto;
+
+  box-sizing: border-box;
+
+  padding: 32px;
+
+  border: 1px solid rgba(168, 85, 247, 0.4);
+
+  border-radius: 14px;
+
+  background: rgba(10, 10, 24, 0.86);
+}
+
+
+/* ==================================================
+   프로필 왼쪽 영역
+================================================== */
+
+.profileArea {
+  display: flex;
+
+  align-items: center;
+
+  gap: 28px;
+}
+
+
+.profileImage {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 135px;
+  height: 135px;
+
+  flex-shrink: 0;
+
+  border: 2px solid #d946ef;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(126, 34, 206, 0.9),
+      rgba(30, 27, 75, 0.95)
+    );
+
+  color: #ffffff;
+
+  font-size: 58px;
+
+  box-shadow:
+    0 0 26px rgba(168, 85, 247, 0.28);
+}
+
+
+.profileInfo {
+  h2 {
+    margin: 0 0 12px;
+
+    font-size: 30px;
+  }
+
+  p {
+    margin: 10px 0 0;
+
+    color: #a2a2b0;
+
+    font-size: 14px;
+  }
+}
+
+
+.levelArea {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  color: #d7d7df;
+
+  font-size: 14px;
+}
+
+
+.levelBadge {
+  padding: 5px 14px;
+
+  border: 1px solid #c026d3;
+
+  border-radius: 20px;
+
+  color: #e879f9;
+
+  font-weight: 700;
+}
+
+
+/* ==================================================
+   오른쪽 요약 기록
+================================================== */
+
+.summaryArea {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  min-width: 570px;
+}
+
+
+.summaryItem {
+  position: relative;
+
+  padding: 10px 36px;
+
+  text-align: center;
+
+  &:not(:first-child) {
+    border-left:
+      1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  p {
+    margin: 10px 0;
+
+    color: #a6a6b3;
+
+    font-size: 14px;
+  }
+
+  strong {
+    display: block;
+
+    font-size: 34px;
+
+    background: linear-gradient(
+      180deg,
+      #ff55dc,
+      #7775ff
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+  }
+
+  small {
+    color: #bbbbc8;
+
+    font-size: 13px;
+  }
+}
+
+
+.summaryIcon {
+  color: #d946ef;
+
+  font-size: 34px;
+}
+
+
+/* ==================================================
+   하단 2열 영역
+================================================== */
+
+.contentGrid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.92fr)
+    minmax(0, 1.08fr);
+
+  gap: 22px;
+
+  width: 100%;
+  max-width: 1450px;
+
+  margin: 22px auto 0;
+}
+
+
+/* ==================================================
+   공통 카드
+================================================== */
+
+.modeRecordCard,
+.myPostCard {
+  overflow: hidden;
+
+  border: 1px solid rgba(168, 85, 247, 0.32);
+
+  border-radius: 13px;
+
+  background: rgba(10, 10, 24, 0.84);
+}
+
+
+.cardHeader {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 24px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  h2 {
+    margin: 0;
+
+    font-size: 19px;
+  }
+
+  button {
+    height: 34px;
+
+    padding: 0 12px;
+
+    border:
+      1px solid rgba(168, 85, 247, 0.3);
+
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: #aaaabb;
+
+    cursor: pointer;
+  }
+}
+
+
+/* ==================================================
+   모드별 기록
+================================================== */
+
+.modeRow {
+  display: grid;
+
+  grid-template-columns:
+    1.4fr
+    0.8fr
+    0.8fr;
+
+  align-items: center;
+
+  min-height: 78px;
+
+  padding: 0 24px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.modeName {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  strong {
+    display: block;
+
+    font-size: 16px;
+  }
+
+  p {
+    margin: 4px 0 0;
+
+    color: #8f8f9f;
+
+    font-size: 13px;
+  }
+}
+
+
+.modeIcon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 8px;
+
+  background: rgba(168, 85, 247, 0.08);
+
+  color: #e879f9;
+
+  font-size: 22px;
+}
+
+
+.modeStat {
+  span {
+    display: block;
+
+    color: #8f8f9f;
+
+    font-size: 11px;
+  }
+
+  strong {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #f472b6;
+
+    font-size: 18px;
+  }
+}
+
+
+.modeSummary {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  > div {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 24px;
+
+    &:last-child {
+      border-left:
+        1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    > span {
+      font-size: 28px;
+    }
+  }
+
+  p {
+    margin: 0;
+
+    color: #9d9daa;
+
+    font-size: 12px;
+  }
+
+  strong {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 18px;
+  }
+}
+
+
+/* ==================================================
+   내가 쓴 글
+================================================== */
+
+.postHeader,
+.postRow {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    145px
+    105px
+    70px;
+
+  align-items: center;
+}
+
+
+.postHeader {
+  min-height: 52px;
+
+  padding: 0 20px;
+
+  box-sizing: border-box;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  color: #8f8f9f;
+
+  font-size: 12px;
+}
+
+
+.postRow {
+  width: 100%;
+
+  min-height: 63px;
+
+  box-sizing: border-box;
+
+  padding: 0 20px;
+
+  border: 0;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  background: transparent;
+
+  color: #ffffff;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(168, 85, 247, 0.06);
+  }
+
+  span:nth-child(3),
+  span:nth-child(4) {
+    color: #aaaabb;
+    font-size: 13px;
+  }
+}
+
+
+.freeBadge,
+.requestBadge {
+  justify-self: start;
+
+  padding: 5px 10px;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+}
+
+
+.freeBadge {
+  border: 1px solid #a855f7;
+
+  color: #e879f9;
+}
+
+
+.requestBadge {
+  border: 1px solid #38bdf8;
+
+  color: #7dd3fc;
+}
+
+
+/* ==================================================
+   페이지네이션
+================================================== */
+
+.pagination {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 18px 0;
+
+  button {
+    width: 32px;
+    height: 32px;
+
+    border:
+      1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: #aaaabb;
+
+    cursor: pointer;
+  }
+}
+
+
+.pagination .activePage {
+  border-color: #8b5cf6;
+
+  background: #7c3aed;
+
+  color: #ffffff;
+}
+
+
+/* ==================================================
+   하단 안내사항
+================================================== */
+
+.guideCard {
+  width: 100%;
+  max-width: 1450px;
+
+  margin: 22px auto 0;
+
+  box-sizing: border-box;
+
+  padding: 18px 24px;
+
+  border: 1px solid rgba(168, 85, 247, 0.25);
+
+  border-radius: 10px;
+
+  background: rgba(10, 10, 24, 0.7);
+
+  strong {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+  }
+
+  p {
+    margin: 0;
+
+    color: #90909f;
+
+    font-size: 13px;
+  }
+}
