@@ -350,7 +350,7 @@ export default function GamePlayPage() {
   const handleExit = () => {
     stopMusic();
 
-    router.push("/");
+    router.push("/game/mode");
   };
 
   // ==============================
