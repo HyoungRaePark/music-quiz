@@ -312,11 +312,20 @@
 .myPostCard {
   overflow: hidden;
 
+  min-height: 520px;
+
   border: 1px solid rgba(168, 85, 247, 0.32);
 
   border-radius: 13px;
 
   background: rgba(10, 10, 24, 0.84);
+}
+
+/* 내가 쓴 글 카드는
+   게시글 개수와 상관없이 페이지네이션을 아래에 고정 */
+.myPostCard {
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -589,14 +598,16 @@
 
   gap: 10px;
 
+  // 게시글이 적어도 페이지네이션을 카드 아래쪽에 고정
+  margin-top: auto;
+
   padding: 18px 0;
 
   button {
     width: 32px;
     height: 32px;
 
-    border:
-      1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.12);
 
     border-radius: 6px;
 
@@ -605,6 +616,11 @@
     color: #aaaabb;
 
     cursor: pointer;
+  }
+
+  button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
   }
 }
 

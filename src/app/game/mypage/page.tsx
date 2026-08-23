@@ -1,12 +1,126 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import GameSidebar from "@/components/GameSidebar";
 import styles from "@/styles/MyPage.module.scss";
 
+type MyPost = {
+  id: number;
+  title: string;
+  category: "FREE" | "REQUEST";
+  date: string;
+  views: number;
+};
+
+const mockMyPosts: MyPost[] = [
+  {
+    id: 400,
+    title: "오늘 K-POP 모드 신기록 달성했어요!",
+    category: "FREE",
+    date: "2025.08.22",
+    views: 128,
+  },
+  {
+    id: 300,
+    title: "이 노래 제목이 뭐예요? ㅠㅠ",
+    category: "REQUEST",
+    date: "2025.08.20",
+    views: 45,
+  },
+  {
+    id: 399,
+    title: "J-POP 추천곡 리스트 공유합니다!",
+    category: "FREE",
+    date: "2025.08.18",
+    views: 68,
+  },
+  {
+    id: 397,
+    title: "HARD 모드 너무 어려운 것 같아요...",
+    category: "FREE",
+    date: "2025.08.16",
+    views: 92,
+  },
+  {
+    id: 298,
+    title: "신곡 업데이트 요청드립니다!",
+    category: "REQUEST",
+    date: "2025.08.15",
+    views: 33,
+  },
+
+  // 2페이지 확인용
+  {
+    id: 396,
+    title: "요즘 듣는 노래 추천해주세요",
+    category: "FREE",
+    date: "2025.08.14",
+    views: 105,
+  },
+  {
+    id: 297,
+    title: "정답 판정 관련해서 질문 있습니다",
+    category: "REQUEST",
+    date: "2025.08.13",
+    views: 74,
+  },
+];
+
+
 export default function MyPage() {
   const router = useRouter();
+
+  /* ==================================================
+    로그아웃
+
+    현재는 실제 인증 기능 연결 전이므로
+    확인창 이후 로그인 페이지로 이동한다.
+    ================================================== */
+
+    const handleLogout = () => {
+    const confirmed = window.confirm(
+        "로그아웃 하시겠습니까?"
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    /*
+        추후 로그인 Context / 토큰 / 세션을
+        여기서 초기화한다.
+    */
+
+    router.push("/login");
+    };
+
+    /* ==================================================
+    내가 쓴 글 페이지네이션
+    ================================================== */
+
+    // 현재 페이지
+    const [currentPostPage, setCurrentPostPage] =
+    useState(1);
+
+    // 한 페이지에 보여줄 글 개수
+    const postsPerPage = 5;
+
+    // 현재 페이지 시작 위치
+    const startIndex =
+    (currentPostPage - 1) * postsPerPage;
+
+    // 현재 페이지에 보여줄 게시글
+    const visibleMyPosts = mockMyPosts.slice(
+    startIndex,
+    startIndex + postsPerPage
+    );
+
+    // 전체 페이지 수
+    const totalPostPages = Math.ceil(
+    mockMyPosts.length / postsPerPage
+    );
 
   return (
     <div className={styles.myPage}>
@@ -44,10 +158,13 @@ export default function MyPage() {
             </button>
 
             <button
-              type="button"
-              className={styles.logoutButton}
+            type="button"
+            className={styles.logoutButton}
+
+            // 로그아웃 처리
+            onClick={handleLogout}
             >
-              ↪ 로그아웃
+            ↪ 로그아웃
             </button>
           </div>
         </header>
@@ -284,106 +401,100 @@ export default function MyPage() {
               <span>조회수</span>
             </div>
 
+            {/* ====================================
+                내가 쓴 게시글 목록
+            ==================================== */}
+
+            {visibleMyPosts.map((post) => (
             <button
-              type="button"
-              className={styles.postRow}
-              onClick={() =>
-                router.push("/game/board/400")
-              }
+                type="button"
+                className={styles.postRow}
+                key={post.id}
+
+                // 게시글 상세 페이지로 이동
+                onClick={() =>
+                router.push(`/game/board/${post.id}`)
+                }
             >
-              <span>
-                오늘 K-POP 모드 신기록 달성했어요!
-              </span>
+                <span>{post.title}</span>
 
-              <span className={styles.freeBadge}>
-                자유게시판
-              </span>
+                <span
+                className={
+                    post.category === "FREE"
+                    ? styles.freeBadge
+                    : styles.requestBadge
+                }
+                >
+                {post.category === "FREE"
+                    ? "자유게시판"
+                    : "노래 요청/건의"}
+                </span>
 
-              <span>2025.08.22</span>
-              <span>128</span>
+                <span>{post.date}</span>
+
+                <span>
+                {post.views.toLocaleString()}
+                </span>
             </button>
-
-            <button
-              type="button"
-              className={styles.postRow}
-              onClick={() =>
-                router.push("/game/board/300")
-              }
-            >
-              <span>
-                이 노래 제목이 뭐예요? ㅠㅠ
-              </span>
-
-              <span className={styles.requestBadge}>
-                노래 요청/건의
-              </span>
-
-              <span>2025.08.20</span>
-              <span>45</span>
-            </button>
-
-            <button
-              type="button"
-              className={styles.postRow}
-            >
-              <span>
-                J-POP 추천곡 리스트 공유합니다!
-              </span>
-
-              <span className={styles.freeBadge}>
-                자유게시판
-              </span>
-
-              <span>2025.08.18</span>
-              <span>68</span>
-            </button>
-
-            <button
-              type="button"
-              className={styles.postRow}
-            >
-              <span>
-                HARD 모드 너무 어려운 것 같아요...
-              </span>
-
-              <span className={styles.freeBadge}>
-                자유게시판
-              </span>
-
-              <span>2025.08.16</span>
-              <span>92</span>
-            </button>
-
-            <button
-              type="button"
-              className={styles.postRow}
-            >
-              <span>
-                신곡 업데이트 요청드립니다!
-              </span>
-
-              <span className={styles.requestBadge}>
-                노래 요청/건의
-              </span>
-
-              <span>2025.08.15</span>
-              <span>33</span>
-            </button>
+            ))}
 
             {/* 페이지네이션 */}
             <div className={styles.pagination}>
-              <button type="button">‹</button>
-
-              <button
+            {/* 이전 페이지 */}
+            <button
                 type="button"
-                className={styles.activePage}
-              >
-                1
-              </button>
+                disabled={currentPostPage === 1}
+                onClick={() =>
+                setCurrentPostPage((prev) =>
+                    Math.max(prev - 1, 1)
+                )
+                }
+            >
+                ‹
+            </button>
 
-              <button type="button">2</button>
-              <button type="button">3</button>
-              <button type="button">›</button>
+            {/* 페이지 번호 */}
+            {Array.from(
+                { length: totalPostPages },
+                (_, index) => {
+                const pageNumber = index + 1;
+
+                return (
+                    <button
+                    type="button"
+                    key={pageNumber}
+                    className={
+                        currentPostPage === pageNumber
+                        ? styles.activePage
+                        : ""
+                    }
+                    onClick={() =>
+                        setCurrentPostPage(pageNumber)
+                    }
+                    >
+                    {pageNumber}
+                    </button>
+                );
+                }
+            )}
+
+            {/* 다음 페이지 */}
+            <button
+                type="button"
+                disabled={
+                currentPostPage === totalPostPages
+                }
+                onClick={() =>
+                setCurrentPostPage((prev) =>
+                    Math.min(
+                    prev + 1,
+                    totalPostPages
+                    )
+                )
+                }
+            >
+                ›
+            </button>
             </div>
           </section>
         </div>
