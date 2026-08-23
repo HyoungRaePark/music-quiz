@@ -1,0 +1,29 @@
+# ==========================================
+# Backend
+# ==========================================
+
+# IntelliJ
+.idea/
+*.iml
+
+# Gradle
+.gradle/
+build/
+
+# 로컬 DB 설정
+application-local.properties
+
+# 테스트용 음원 파일
+backend/src/main/resources/static/music/
+
+
+# ==========================================
+# Frontend
+# ==========================================
+
+node_modules/
+.next/
+
+# 환경 변수
+.env
+.env.local
