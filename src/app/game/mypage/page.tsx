@@ -36,6 +36,9 @@ export default function MyPage() {
             <button
               type="button"
               className={styles.profileEditButton}
+              onClick={() =>
+                router.push("/game/mypage/edit")
+                }
             >
               ⚙ 회원정보 수정
             </button>
