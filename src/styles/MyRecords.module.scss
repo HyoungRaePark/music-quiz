@@ -1,0 +1,442 @@
+/* ==================================================
+   전체 페이지
+================================================== */
+
+.recordsPage {
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(60, 20, 130, 0.12),
+      transparent 48%
+    ),
+    #05050f;
+
+  color: #ffffff;
+}
+
+
+/* ==================================================
+   메인 영역
+================================================== */
+
+.recordsContainer {
+  min-height: 100vh;
+
+  margin-left: 260px;
+
+  width: calc(100% - 260px);
+
+  box-sizing: border-box;
+
+  padding: 24px 42px 50px;
+}
+
+
+/* ==================================================
+   상단
+================================================== */
+
+.pageHeader {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  max-width: 1450px;
+
+  margin: 0 auto 32px;
+
+  h1 {
+    margin: 0;
+
+    font-size: 38px;
+    font-weight: 800;
+
+    span {
+      color: #e879f9;
+    }
+  }
+
+  p {
+    margin: 8px 0 0;
+
+    color: #9696a6;
+
+    font-size: 16px;
+  }
+}
+
+
+.backButton {
+  min-width: 210px;
+  height: 46px;
+
+  border:
+    1px solid rgba(217, 70, 239, 0.55);
+
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  &:hover {
+    color: #f0abfc;
+
+    box-shadow:
+      0 0 14px
+      rgba(217, 70, 239, 0.15);
+  }
+}
+
+
+/* ==================================================
+   모드 필터
+================================================== */
+
+.modeFilter {
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, 1fr);
+
+  width: 100%;
+  max-width: 840px;
+
+  margin: 0 auto 24px 0;
+
+  margin-left:
+    max(
+      0px,
+      calc(
+        (100% - 1450px) / 2
+      )
+    );
+
+  button {
+    height: 48px;
+
+    border:
+      1px solid rgba(255, 255, 255, 0.15);
+
+    background: rgba(10, 10, 24, 0.75);
+
+    color: #d4d4df;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    &:first-child {
+      border-radius: 8px 0 0 8px;
+    }
+
+    &:last-child {
+      border-radius: 0 8px 8px 0;
+    }
+  }
+}
+
+
+.modeFilter .activeMode {
+  border-color: #8b5cf6;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6d28d9,
+      #9333ea
+    );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 0 14px
+    rgba(139, 92, 246, 0.2);
+}
+
+
+/* ==================================================
+   기록 요약
+================================================== */
+
+.summaryGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, 1fr);
+
+  width: 100%;
+  max-width: 1450px;
+
+  margin: 0 auto 22px;
+}
+
+
+.summaryCard {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 20px;
+
+  min-height: 120px;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid rgba(168, 85, 247, 0.18);
+
+  background: rgba(10, 10, 24, 0.82);
+
+  &:first-child {
+    border-radius: 12px 0 0 12px;
+  }
+
+  &:last-child {
+    border-radius: 0 12px 12px 0;
+  }
+
+  > span {
+    color: #d946ef;
+
+    font-size: 35px;
+  }
+
+  p {
+    margin: 0 0 8px;
+
+    color: #b0b0bd;
+
+    font-size: 13px;
+  }
+
+  strong {
+    font-size: 31px;
+
+    background:
+      linear-gradient(
+        180deg,
+        #ff55dc,
+        #a855f7
+      );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+  }
+
+  small {
+    color: #c5c5cf;
+
+    font-size: 12px;
+  }
+}
+
+
+/* ==================================================
+   기록 카드
+================================================== */
+
+.recordCard {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 1450px;
+
+  margin: 0 auto;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(168, 85, 247, 0.28);
+
+  border-radius: 13px;
+
+  background: rgba(10, 10, 24, 0.82);
+}
+
+.recordTitle {
+  padding: 20px 26px;
+
+  h2 {
+    margin: 0;
+
+    font-size: 20px;
+  }
+}
+
+
+/* ==================================================
+   기록 테이블
+================================================== */
+
+.recordHeader,
+.recordRow {
+  display: grid;
+
+  grid-template-columns:
+    1.4fr
+    1fr
+    1fr
+    1.25fr
+    1fr
+    1fr
+    1fr;
+
+  align-items: center;
+
+  padding: 0 26px;
+
+  box-sizing: border-box;
+}
+
+.recordHeader {
+  min-height: 54px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  color: #9292a4;
+
+  font-size: 16px;
+}
+
+
+.recordRow {
+  min-height: 68px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  color: #d9d9e2;
+
+  font-size: 16px;
+
+  strong {
+    color: #f472d0;
+
+    font-size: 18px;
+  }
+}
+
+
+/* ==================================================
+   모드 배지
+================================================== */
+
+.modeBadge {
+  justify-self: start;
+
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  font-size: 12px;
+}
+
+
+.modeKPOP {
+  border: 1px solid #a855f7;
+
+  color: #d946ef;
+}
+
+
+.modeJPOP {
+  border: 1px solid #3b82f6;
+
+  color: #60a5fa;
+}
+
+
+.modePOP {
+  border: 1px solid #22c55e;
+
+  color: #4ade80;
+}
+
+
+.modeHARD {
+  border: 1px solid #f97316;
+
+  color: #fb923c;
+}
+
+
+/* ==================================================
+   페이지네이션
+================================================== */
+
+.pagination {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  // 기록 개수가 적어도
+  // 페이지네이션을 카드 맨 아래에 유지
+  margin-top: auto;
+
+  padding: 24px 0;
+
+  button {
+    width: 36px;
+    height: 36px;
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: #c2c2cd;
+
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.pagination .activePage {
+  border-color: #8b5cf6;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6d28d9,
+      #8b5cf6
+    );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 0 12px
+    rgba(139, 92, 246, 0.25);
+}
+
+/* ==================================================
+   플레이 기록 목록 영역
+
+   한 페이지 최대 7개의 기록이 들어가므로
+   기록이 적은 페이지에서도 7줄 공간을 유지한다.
+================================================== */
+
+.recordList {
+  // recordRow 68px × 7개
+  min-height: calc(68px * 7);
+}

@@ -255,10 +255,14 @@ export default function MyPage() {
           <section className={styles.modeRecordCard}>
             <div className={styles.cardHeader}>
               <h2>▥ 모드별 최고 기록</h2>
-
-              <button type="button">
+                <button
+                type="button"
+                onClick={() =>
+                    router.push("/game/mypage/records")
+                }
+                >
                 전체 기록 보기 ›
-              </button>
+                </button>
             </div>
 
             <div className={styles.modeList}>
